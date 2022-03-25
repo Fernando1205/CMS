@@ -19,5 +19,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('login', [ LoginController::class, 'login'])->name('login');
-Route::get('registro', [ LoginController::class, 'register'])->name('register');
+Route::get('login', [ LoginController::class, 'showLogin'])->name('login');
+Route::get('registro', [ LoginController::class, 'showRegister'])->name('register');
+Route::post('registro', [ LoginController::class, 'register'])->name('registerUser');
