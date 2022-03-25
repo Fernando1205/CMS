@@ -16,5 +16,12 @@
 
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        <script>
+            @if (session('success'))
+                toastr.success("{{ session('message') }}");
+            @elseif (session('error'))
+                toastr.error("{{ session('message') }}");
+            @endif
+        </script>
     </body>
 </html>

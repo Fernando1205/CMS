@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class LoginController extends Controller
@@ -22,8 +21,14 @@ class LoginController extends Controller
 
     public function register(RegisterRequest $request) : RedirectResponse
     {
-        User::create($request->validated());
+        try {
+            User::create($request->validated());
 
-        return redirect()->route('login')->with('message','Usuario creado exitosamente');
+            return redirect()->route('login')->with('success','Usuario creado exitosamente');
+
+        } catch (\Throwable $th) {
+            return redirect()->route('login')->with('error','Ha ocurrido un error');
+        }
+
     }
 }
