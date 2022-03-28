@@ -18,9 +18,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
         <script>
             @if (session('success'))
-                toastr.success("{{ session('message') }}");
+                toastr.success("{{ session('success') }}");
             @elseif (session('error'))
-                toastr.error("{{ session('message') }}");
+                toastr.error("{{ session('error') }}");
             @endif
         </script>
     </body>

@@ -17,12 +17,18 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @enderror
-                    <form>
+                    <form method="POST" action="{{ route('loginUser') }}">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">{{ __('Email') }}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope-open"></i></span>
                                 <input type="text" class="form-control" placeholder="example@example.com" name="email">
+                                @error('email')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -31,6 +37,11 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock-open"></i></span>
                                 <input type="password" class="form-control" placeholder="********" name="password" autocomplete="off">
+                                @error('password')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
