@@ -78,7 +78,8 @@ body {
         background-color: #fff;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.10) !important;
         list-style: none;
-        .breadcrum.item {
+        .breadcrum-item {
+            display: inline-block;
             a {
                 text-decoration: none!important;
                 &:hover {

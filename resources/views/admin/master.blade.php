@@ -41,7 +41,8 @@
                                         Dashboard
                                     </a>
                                 </li>
-                                @section('breadcrum')
+                                @yield('breadcrum')
+
                             </ol>
                         </nav>
                     </div>

@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('users.index') }}">
                     <i class="fa-solid fa-users"></i>
                     Usuarios
                 </a>

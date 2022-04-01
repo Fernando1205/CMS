@@ -11368,10 +11368,13 @@ body {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
   list-style: none;
 }
-.page .breadcrum .breadcrum.item a {
+.page .breadcrum .breadcrum-item {
+  display: inline-block;
+}
+.page .breadcrum .breadcrum-item a {
   text-decoration: none !important;
 }
-.page .breadcrum .breadcrum.item a:hover {
+.page .breadcrum .breadcrum-item a:hover {
   text-decoration: none !important;
 }
 
