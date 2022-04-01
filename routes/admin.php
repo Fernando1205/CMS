@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin', function () {
-    return 'Hola';
+Route::prefix('admin')->group(function() {
+    Route::get('', [DashboardController::class, 'dashboard']);
 });
