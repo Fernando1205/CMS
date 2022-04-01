@@ -44,7 +44,7 @@ class LoginController extends Controller
     {
         try {
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
-                return redirect('/');
+                return redirect('/admin');
             } else {
                 return redirect()->back()->with('error','Credenciales invalidas');
             }

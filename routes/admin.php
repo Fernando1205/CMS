@@ -4,5 +4,5 @@ use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function() {
-    Route::get('', [DashboardController::class, 'dashboard']);
+    Route::get('', [DashboardController::class, 'dashboard'])->name('dashboard');
 });

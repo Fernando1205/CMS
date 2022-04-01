@@ -7,11 +7,19 @@
         <title>CMS - @yield('title', 'Laravel')</title>
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
         <script src="https://kit.fontawesome.com/80c9d698bb.js" crossorigin="anonymous"></script>
         @stack('css')
 
     </head>
     <body>
+        <div class="wrapper">
+            <div class="col1">
+                @include('admin.sidebar')
+            </div>
+            <div class="col2"></div>
+
+        </div>
         @yield('content')
 
         <script src="{{ asset('js/app.js') }}"></script>
