@@ -17,10 +17,40 @@
             <div class="col1">
                 @include('admin.sidebar')
             </div>
-            <div class="col2"></div>
+            <div class="col2">
+                <nav class="navbar navbar-expand-lg shadow">
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard') }}" class="nav-link">
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                    Dashboard
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="page">
+                    <div class="container-fluid">
+                        <nav aria-label="breadcrum shadow">
+                            <ol class="breadcrum">
+                                <li class="breadcrum-item">
+                                    <a href="{{ route('dashboard') }}">
+                                        <i class="fa-solid fa-house-chimney"></i>
+                                        Dashboard
+                                    </a>
+                                </li>
+                                @section('breadcrum')
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                @yield('content')
+            </div>
 
         </div>
-        @yield('content')
 
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
