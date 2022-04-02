@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('products.index') }}">
                     <i class="fa-solid fa-boxes-stacked"></i>
                     Productos
                 </a>
