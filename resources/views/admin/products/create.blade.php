@@ -28,6 +28,7 @@
         <div class="inside">
             <form action="" method="POST">
                 @csrf
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -60,6 +61,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="mb-3">
@@ -75,14 +77,27 @@
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3">
-                            <label for="price" class="form-label">¿En descuento?</label>
-                            <select class="form-select" aria-label="Default select example">
+                            <label for="indiscount" class="form-label">Descuento:</label>
+                            <select class="form-select" aria-label="Default select example" id="indiscount" name="indiscount">
                                 <option selected value="0">No</option>
                                 <option value="1">Si</option>
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="discount" class="form-label">Descuento:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa-solid fa-percent"></i>
+                                </div>
+                                <input type="number" class="form-control" id="discount" name="discount"
+                                    value="{{ old('discount') }}" min="0" step="any">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
@@ -92,9 +107,20 @@
                           </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
               </form>
         </div>
     </div>
 </div>
 @endsection
+@push('script')
+    <script>
+        CKEDITOR.replace( 'description', {
+            toolbar: [
+                { name:'clipborad',items:['Cut','Paste','PasteText','-','Undo','Redo'] },
+                { name:'basicstyles', items:['Bold','Italic','BulletedList','Strike','Imagen','Link','Unlike','Blockquote']},
+                { name:'document', items: ['CodeSnippet','EmojiPanel','Preview','Source']}
+            ]
+        } );
+    </script>
+@endpush

@@ -7,7 +7,7 @@
         <title>CMS - @yield('title', 'Laravel')</title>
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
         <script src="https://kit.fontawesome.com/80c9d698bb.js" crossorigin="anonymous"></script>
         @stack('css')
 
@@ -54,7 +54,10 @@
         </div>
 
         <script src="{{ asset('js/app.js') }}"></script>
+        {{-- JQUERY --}}
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        {{-- CKEDITOR4 --}}
+        <script src="//cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
         <script>
             @if (session('success'))
                 toastr.success("{{ session('success') }}");
@@ -62,5 +65,6 @@
                 toastr.error("{{ session('error') }}");
             @endif
         </script>
+        @stack('script')
     </body>
 </html>
