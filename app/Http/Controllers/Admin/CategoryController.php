@@ -11,9 +11,10 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function index(): View
+    public function index($module): View
     {
-        return view('admin.categories.index');
+        $cats = Category::where('module', $module)->orderBy('name','asc')->get();
+        return view('admin.categories.index', compact('cats'));
     }
 
     public function create()

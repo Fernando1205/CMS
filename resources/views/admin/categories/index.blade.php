@@ -85,6 +85,55 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-9">
+            <div class="panel shadow">
+                <div class="header">
+                    <div class="title">
+                        <h5><i class="fa-solid fa-folder"></i> Categoría</h5>
+                    </div>
+                </div>
+
+                <div class="inside">
+                    <ul class="nav nav-pills">
+                        @foreach (getModulesArray() as $key => $cat)
+                            <li class="nav-item">
+                                <a class="nav-link bg-primary text-white ms-1" aria-current="page"
+                                    href="{{ route('categories.name.module', $key) }}">
+                                    <i class="fa-solid fa-list"></i>
+                                     {{ $cat }}
+                                    </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td width="32px"></td>
+                                <td>Nombre</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($cats as $cat)
+                                <tr>
+                                    <td>{!! htmlspecialchars_decode($cat->icono) !!}</td>
+                                    <td>{{ $cat->name }}</td>
+                                    <td>
+                                        <a href="{{ route('categories.update', $cat) }}" class="btn btn-primary">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="{{ route('categories.destroy', $cat) }}"  class="btn btn-danger">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

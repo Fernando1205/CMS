@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('categories.index') }}">
+                <a href="{{ url('admin/categories/0') }}">
                     <i class="fa-solid fa-folder"></i>
                     Categorías
                 </a>
