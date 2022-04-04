@@ -17,11 +17,6 @@ class CategoryController extends Controller
         return view('admin.categories.index', compact('cats'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(CategoryRequest $request)
     {
         try {
@@ -33,31 +28,18 @@ class CategoryController extends Controller
             ]);
             return redirect()->back()->with('success','Categoría creada exitosamente');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             return redirect()->back()->with('error','Ha ocurrido un error');
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Category $category): View
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -67,9 +49,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        try {
+            $category->update($request->all());
+            return redirect()->back()->with('success','Categoría actualizada exitosamente');
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
     }
 
     /**
@@ -78,8 +66,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        try {
+            $category->delete();
+            return redirect()->back()->with('success','Categoría eliminada exitosamente');
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
     }
 }

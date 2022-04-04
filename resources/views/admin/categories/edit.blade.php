@@ -26,13 +26,14 @@
             <div class="panel shadow">
                 <div class="header">
                     <div class="title">
-                        <h5><i class="fa-solid fa-plus"></i> Agregar Categoría</h5>
+                        <h5><i class="fa-solid fa-plus"></i> Editar Categoría</h5>
                     </div>
                 </div>
 
                 <div class="inside">
-                    <form action="{{ route('categories.store') }}" method="POST">
+                    <form action="{{ route('categories.update', $category) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
@@ -42,7 +43,7 @@
                                             <i class="fa-solid fa-keyboard"></i>
                                         </div>
                                         <input type="text" class="form-control" id="name" name="name"
-                                            value="{{ old('name') }}">
+                                            value="{{ $category->name }}">
                                     </div>
                                     @error('name')
                                         <div class="invalid-feedback d-block">
@@ -56,7 +57,7 @@
                                     <label for="module" class="form-label">Modulo:</label>
                                     <select class="form-select" aria-label="Default select example" id="module" name="module">
                                         @foreach (getModulesArray() as $key => $item)
-                                            <option value="{{ $key }}" {{ old('module') == $key ? 'selected' : ''}}>{{ $item }}</option>
+                                            <option value="{{ $key }}" {{ $category->module == $key ? 'selected' : ''}}>{{ $item }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -69,7 +70,7 @@
                                             <i class="fa-solid fa-keyboard"></i>
                                         </div>
                                         <input type="text" class="form-control" id="icono" name="icono"
-                                            value="{{ old('icon') }}">
+                                            value="{{ htmlspecialchars_decode($category->icono) }}">
                                     </div>
                                     @error('icono')
                                         <div class="invalid-feedback d-block">
@@ -79,62 +80,9 @@
                                 </div>
                             </div>
 
-                            <input type="submit" value="Enviar" class="btn btn-success">
+                            <input type="submit" value="Actualizar" class="btn btn-success">
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-9">
-            <div class="panel shadow">
-                <div class="header">
-                    <div class="title">
-                        <h5><i class="fa-solid fa-folder"></i> Categoría</h5>
-                    </div>
-                </div>
-
-                <div class="inside">
-                    <ul class="nav nav-pills">
-                        @foreach (getModulesArray() as $key => $cat)
-                            <li class="nav-item active">
-                                <a class="nav-link bg-primary text-white ms-1" aria-current="page"
-                                    href="{{ route('categories.name.module', $key) }}">
-                                    <i class="fa-solid fa-list"></i>
-                                     {{ $cat }}
-                                    </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td width="32px"></td>
-                                <td>Nombre</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cats as $cat)
-                                <tr>
-                                    <td>{!! htmlspecialchars_decode($cat->icono) !!}</td>
-                                    <td>{{ $cat->name }}</td>
-                                    <td>
-                                        <a href="{{ route('categories.edit', $cat) }}" class="btn btn-primary">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <form action="{{ route('categories.destroy', $cat) }}" method="post" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
