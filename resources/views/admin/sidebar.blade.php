@@ -32,6 +32,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('categories.index') }}">
+                    <i class="fa-solid fa-folder"></i>
+                    Categorías
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('users.index') }}">
                     <i class="fa-solid fa-users"></i>
                     Usuarios

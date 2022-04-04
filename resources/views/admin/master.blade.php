@@ -59,6 +59,11 @@
         {{-- CKEDITOR4 --}}
         <script src="//cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
         <script>
+            @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            toastr.warning("{{ $error }}");
+            @endforeach
+            @endif
             @if (session('success'))
                 toastr.success("{{ session('success') }}");
             @elseif (session('error'))
