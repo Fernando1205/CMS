@@ -19,6 +19,14 @@
 
 @section('content')
 <div class="container-fluid">
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="panel shadow">
         <div class="header">
             <div class="title">
@@ -26,34 +34,44 @@
             </div>
         </div>
         <div class="inside">
-            <form action="" method="POST">
+            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="title" class="form-label">Nombre del producto:</label>
+                            <label for="name" class="form-label">Nombre del producto:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-keyboard"></i>
                                 </div>
-                                <input type="text" class="form-control" id="title" name="title"
-                                    value="{{ old('title') }}">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{ old('name') }}">
+                                @error('name')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3">
-                            <label for="category" class="form-label">Categoría:</label>
+                            <label for="category_id" class="form-label">Categoría:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-keyboard"></i>
                                 </div>
-                                <select class="form-select" aria-label="Default select example" id="indiscount" name="indiscount">
+                                <select class="form-select" aria-label="Default select example" id="category_id" name="category_id">
                                     @foreach ($categories as $category)
-                                        <option selected value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ?  'selected' : '' }}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -61,6 +79,11 @@
                         <div class="mb-3">
                             <label for="image" class="form-label">Imagen Destacada:</label>
                             <input class="form-control" type="file" id="image" name="image">
+                            @error('image')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -75,6 +98,11 @@
                                 </div>
                                 <input type="number" class="form-control" id="price" name="price"
                                     value="{{ old('price') }}" min="0" step="any">
+                                @error('price')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -82,9 +110,14 @@
                         <div class="mb-3">
                             <label for="indiscount" class="form-label">Descuento:</label>
                             <select class="form-select" aria-label="Default select example" id="indiscount" name="indiscount">
-                                <option selected value="0">No</option>
-                                <option value="1">Si</option>
+                                <option value="0" {{ old('indiscount') == '0' ?  'selected' : '' }}>No</option>
+                                <option value="1" {{ old('indiscount') == '1' ?  'selected' : '' }}>Si</option>
                             </select>
+                            @error('indiscount')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -96,6 +129,11 @@
                                 </div>
                                 <input type="number" class="form-control" id="discount" name="discount"
                                     value="{{ old('discount') }}" min="0" step="any">
+                                @error('discount')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -104,9 +142,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="description" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="description" name="description"
-                                rows="3">{{ old('description') }}</textarea>
+                            <label for="content" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="content" name="content"
+                                rows="3">{{ old('content') }}</textarea>
+                            @error('content')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                           </div>
                     </div>
                 </div>
@@ -118,7 +161,7 @@
 @endsection
 @push('script')
     <script>
-        CKEDITOR.replace( 'description', {
+        CKEDITOR.replace( 'content', {
             toolbar: [
                 { name:'clipborad',items:['Cut','Paste','PasteText','-','Undo','Redo'] },
                 { name:'basicstyles', items:['Bold','Italic','BulletedList','Strike','Imagen','Link','Unlike','Blockquote']},

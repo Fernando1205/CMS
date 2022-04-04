@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -20,51 +24,42 @@ class ProductController extends Controller
         return view('admin.products.create',compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request): RedirectResponse
     {
-
+        try {
+            Product::create([
+                'status' => 0,
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'category_id' => $request->category_id,
+                'image' => 'prueba.png',
+                'price' => $request->price,
+                'indiscount' => $request->indiscount,
+                'discount' => $request->discount ?? 0,
+                'content' => $request->content,
+            ]);
+            return redirect()->back()->with('success','Producto creado exitosamente');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
