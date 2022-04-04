@@ -49,8 +49,11 @@
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-keyboard"></i>
                                 </div>
-                                <input type="text" class="form-control" id="category" name="category"
-                                    value="{{ old('category') }}">
+                                <select class="form-select" aria-label="Default select example" id="indiscount" name="indiscount">
+                                    @foreach ($categories as $category)
+                                        <option selected value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
