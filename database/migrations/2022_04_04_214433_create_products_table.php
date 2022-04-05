@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('status');
             $table->string('name');
             $table->string('slug');
-            $table->integer('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('image');
             $table->decimal('price',11,2);
             $table->integer('indiscount');
@@ -26,6 +26,8 @@ return new class extends Migration
             $table->text('content');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

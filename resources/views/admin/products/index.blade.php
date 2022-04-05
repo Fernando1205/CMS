@@ -25,7 +25,45 @@
                     <i class="fa-solid fa-plus"></i> Crear Producto
                 </a>
             </div>
-            <table class="table"></table>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td></td>
+                        <td>Nombre:</td>
+                        <td>Categoría</td>
+                        <td>Precio:</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>
+                                <a href="{{ asset('storage/'.$product->image) }}" target="_blank">
+                                    <img src="{{ asset('storage/t_'.$product->image) }}" alt="Producto" width="64">
+                                </a>
+                            </td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>
+                                <a href="{{ route('products.edit', $product) }}" class="btn btn-primary">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <form action="{{ route('products.destroy', $product) }}" method="post" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
