@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -24,23 +25,27 @@ class ProductController extends Controller
         return view('admin.products.create',compact('categories'));
     }
 
-    public function store(ProductRequest $request): RedirectResponse
+    public function store(ProductRequest $request, ImageService $imageService): RedirectResponse
     {
         try {
+            if($request->has('image')){
+                $path = $imageService->saveImage($request->file('image'));
+            }
+
             Product::create([
                 'status' => 0,
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
                 'category_id' => $request->category_id,
-                'image' => 'prueba.png',
+                'image' => $path,
                 'price' => $request->price,
                 'indiscount' => $request->indiscount,
                 'discount' => $request->discount ?? 0,
                 'content' => $request->content,
             ]);
+
             return redirect()->back()->with('success','Producto creado exitosamente');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             return redirect()->back()->with('error','Ha ocurrido un error');
         }
     }

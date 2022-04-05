@@ -78,7 +78,7 @@
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="image" class="form-label">Imagen Destacada:</label>
-                            <input class="form-control" type="file" id="image" name="image">
+                            <input class="form-control" type="file" id="image" name="image" accept="image/*" >
                             @error('image')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
