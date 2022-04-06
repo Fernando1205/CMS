@@ -34,7 +34,6 @@ class ProductController extends Controller
             }
 
             Product::create([
-                'status' => 0,
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
                 'category_id' => $request->category_id,
@@ -62,10 +61,25 @@ class ProductController extends Controller
         return view('admin.products.edit',compact('product','categories'));
     }
 
-    public function update(ProductUpdRequest $request, Product $product)
+    public function update(ProductUpdRequest $request, Product $product, ImageService $imageService)
     {
         try {
-            $product->update($request->validated());
+
+            if($request->has('image')){
+                $path = $imageService->saveImage($request->file('image'));
+            }
+            $product->update([
+                'status' => $request->status,
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'category_id' => $request->category_id,
+                'image' => $path ?? $product->image,
+                'price' => $request->price,
+                'indiscount' => $request->indiscount,
+                'discount' => $request->discount ?? 0,
+                'content' => $request->content,
+            ]);
+
             return redirect()->back()->with('success','Producto actualizado exitosamente');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error','Ha ocurrido un error');

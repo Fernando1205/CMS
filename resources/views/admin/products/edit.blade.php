@@ -139,6 +139,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status:</label>
+                                    <select class="form-select" aria-label="Default select example" id="status" name="status">
+                                        <option value="0" {{ $product->status == '0' ?  'selected' : '' }}>Borrado</option>
+                                        <option value="1" {{ $product->status == '1' ?  'selected' : '' }}>Publico</option>
+                                    </select>
+                                    @error('status')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row">

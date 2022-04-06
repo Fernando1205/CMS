@@ -30,6 +30,7 @@ class ProductUpdRequest extends FormRequest
             'image' => 'nullable|image',
             'indiscount' => 'nullable',
             'discount' => 'nullable|numeric',
+            'status' => 'required|numeric|digits_between:0,1',
             'content' => 'required',
         ];
     }
@@ -42,6 +43,7 @@ class ProductUpdRequest extends FormRequest
             'price.required' => 'Precio requerido',
             'image.image' => 'Imagen debe ser tipo png-jpg-pneg-gif',
             'discount.numeric' => 'Debe ser un precio valido',
+            'status.required' => 'Estatus requerido',
             'content.required' => 'Contenido requerido'
         ];
     }
