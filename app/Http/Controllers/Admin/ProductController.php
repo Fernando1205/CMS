@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 
@@ -56,17 +56,24 @@ class ProductController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Product $product): View
     {
-        //
+        $categories = Category::where('module', '0')->get();
+        return view('admin.products.edit',compact('product','categories'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ProductUpdRequest $request, Product $product)
     {
-        //
+        try {
+            $product->update($request->validated());
+            return redirect()->back()->with('success','Producto actualizado exitosamente');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+
+        }
     }
 
-    public function destroy($id)
+    public function destroy(Product $product)
     {
         //
     }

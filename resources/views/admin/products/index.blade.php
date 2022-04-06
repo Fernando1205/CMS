@@ -41,7 +41,9 @@
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>
-                                <a href="{{ asset('storage/'.$product->image) }}" target="_blank">
+                                <a href="{{ asset('storage/'.$product->image) }}"
+                                    data-fancybox="gallery"
+                                    data-caption="Optional caption">
                                     <img src="{{ asset('storage/t_'.$product->image) }}" alt="Producto" width="64">
                                 </a>
                             </td>
