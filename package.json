@@ -21,6 +21,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@fancyapps/ui": "^4.0.26",
         "toastr": "^2.1.4"
     }
 }

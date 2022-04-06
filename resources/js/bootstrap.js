@@ -33,3 +33,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Toastr
 window.toastr = require('toastr');
+// FancyBox
+window.Fancybox = require('@fancyapps/ui');
