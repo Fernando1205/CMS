@@ -20,25 +20,25 @@
     <div class="main">
         <ul>
             <li>
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard') }}" class="{{ request()->is('admin') ?  'active-side' : '' }}">
                     <i class="fa-solid fa-house-chimney"></i>
                     Dashboard
                 </a>
             </li>
             <li>
-                <a href="{{ route('products.index') }}">
+                <a href="{{ route('products.index') }}" class="{{ request()->is('admin/products*') ?  'active-side' : '' }}">
                     <i class="fa-solid fa-boxes-stacked"></i>
                     Productos
                 </a>
             </li>
             <li>
-                <a href="{{ url('admin/categories/0') }}">
+                <a href="{{ url('admin/categories/0') }}" class="{{ request()->is('admin/categories*') ?  'active-side' : '' }}">
                     <i class="fa-solid fa-folder"></i>
                     Categorías
                 </a>
             </li>
             <li>
-                <a href="{{ route('users.index') }}">
+                <a href="{{ route('users.index') }}" class="{{ request()->is('admin/users*') ?  'active-side' : '' }}">
                     <i class="fa-solid fa-users"></i>
                     Usuarios
                 </a>
