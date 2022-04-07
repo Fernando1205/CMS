@@ -45,6 +45,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->lastname}";
+    }
+
+    public function getRoleNameAttribute()
+    {
+        return $this->role == 1 ? 'Administrador' : 'Usuario';
+    }
+
+    public function getStatusNameAttribute()
+    {
+        return $this->role == 1 ? 'Registrado' : 'No verificado';
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);

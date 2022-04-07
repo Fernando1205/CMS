@@ -25,6 +25,27 @@
                 </div>
 
                 <div class="inside">
+                    @if (is_null($user->avatar))
+                        <img src="{{ asset('images/avatar.jpg') }}" alt="Avatar" class="img-fluid rounded d-block m-auto" width="150px">
+                    @else
+                        <img src="{{ asset('storage/'.$user->avatar) }}" alt="Avatar" class="img-fluid rounded d-block m-auto" width="150px">
+                    @endif
+                    <div class="info m-auto text-center">
+                        <span class="d-block fw-bold fs-5"><i class="fa-solid fa-address-card"></i> Nombre:</span>
+                        <p class="text-strong">{{ $user->full_name }}</p>
+
+                        <span class="d-block fw-bold fs-5"><i class="fa-solid fa-envelope"></i> Correo electrónico:</span>
+                        <p class="text-strong">{{ $user->email }}</p>
+
+                        <span class="d-block fw-bold fs-5"><i class="fa-solid fa-user-tag"></i> Rol:</span>
+                        <p class="text-strong">{{ $user->role_name }}</p>
+
+                        <span class="d-block fw-bold fs-5"><i class="fa-solid fa-circle-check"></i> Estado del usuario:</span>
+                        <p class="text-strong">{{ $user->status_name }}</p>
+
+                        <span class="d-block fw-bold fs-5"><i class="fa-solid fa-calendar-days"></i>  Fecha de registro:</span>
+                        <p class="text-strong">{{ $user->created_at }}</p>
+                    </div>
                 </div>
             </div>
         </div>
