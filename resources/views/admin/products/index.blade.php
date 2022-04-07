@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
-                        <tr>
+                        <tr class="{{ $product->status != 1 ? 'table-danger' : ''}}">
                             <td>{{ $product->id }}</td>
                             <td>
                                 <a href="{{ asset('storage/'.$product->image) }}"
@@ -64,6 +64,9 @@
                             </td>
                         </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="6">{!! $products->links() !!}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

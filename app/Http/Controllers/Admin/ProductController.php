@@ -18,7 +18,7 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        $products = Product::orderBy('id','desc')->with('category')->paginate(25);
+        $products = Product::orderBy('id','desc')->with('category')->paginate(10);
         return view('admin.products.index', compact('products'));
     }
 
@@ -66,10 +66,18 @@ class ProductController extends Controller
     public function update(ProductUpdRequest $request, Product $product, ImageService $imageService)
     {
         try {
-
-            if($request->has('image')){
-                $path = $imageService->saveImage($request->file('image'));
+            if ($request->has('image')) {
+                if($imageService->imageExist($product->image)){
+                    $imageService->deleteImage($product->image);
+                    if($request->has('image')){
+                        $path = $imageService->saveImage($request->file('image'));
+                    }
+                } else {
+                    $path = $imageService->saveImage($request->file('image'));
+                }
             }
+
+
             $product->update([
                 'status' => $request->status,
                 'name' => $request->name,
