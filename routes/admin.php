@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->middleware('auth','IsAdmin')->group(function() {
 
     Route::get('', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    // Users
     Route::resource('users', UserController::class);
 
     // Productos

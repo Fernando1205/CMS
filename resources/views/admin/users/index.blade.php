@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <div class="panel shadow">
         <div class="header">
-            <h2 class="titlte">Usuarios</h2>
+            <h2 class="titlte"><i class="fa-solid fa-users"></i> Usuarios</h2>
         </div>
 
         <div class="inside">
@@ -37,11 +37,8 @@
                             <td>{{ $user->lastname }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="{{ route('users.update', $user) }}" class="btn btn-primary">
+                                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">
                                     <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="{{ route('users.destroy', $user) }}"  class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
