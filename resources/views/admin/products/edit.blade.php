@@ -199,9 +199,13 @@
                                 <div class="card">
                                     <img src="{{ asset('storage/t_'.$img->image) }}" alt="Producto" class="img-fluid">
                                     <div class="card-body m-0 p-0">
-                                        <button type="submit" class="btn btn-danger d-block w-100">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
+                                        <form action="{{ route('gallery.destroy', $img) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger d-block w-100">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
