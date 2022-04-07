@@ -192,10 +192,25 @@
                     </div>
                 </div>
                 <div class="inside">
+                    <div class="tumbs">
+                        <div class="row">
+                            @foreach ($product->gallery as $img)
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img src="{{ asset('storage/t_'.$img->image) }}" alt="Producto" class="img-fluid">
+                                    <div class="card-body m-0 p-0">
+                                        <button type="submit" class="btn btn-danger d-block w-100">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                     <form action="{{ route('products.gallery', $product) }}" method="POST" enctype="multipart/form-data" id="formGallery">
                         @csrf
                         <div class="mb-3">
-                            <label for="product_image" class="form-label">Imagen Destacada:</label>
                             <input class="form-control d-none" type="file" id="product_image" name="product_image" accept="image/*" required>
                             @error('product_image')
                                 <div class="invalid-feedback d-block">
@@ -204,7 +219,7 @@
                             @enderror
                         </div>
                     </form>
-                    <div class="tumb">
+                    <div class="tumb mb-3">
                         <a href="#" id="btn_product_file_image" class="btn-primary w-full d-block text-center"><i class="fa-solid fa-plus"></i></a>
                     </div>
                 </div>
