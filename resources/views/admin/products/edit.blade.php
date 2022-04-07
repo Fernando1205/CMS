@@ -175,13 +175,37 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="panel shadow">
+            <div class="panel shadow mb-3">
                 <div class="header">
                     <div class="title">
                         <h2><i class="fa-solid fa-image"></i> Imagen destacada</h2>
                     </div>
                     <div class="inside">
                         <img src="{{ asset('storage/'.$product->image) }}" alt="Producto" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="panel shadow">
+                <div class="header">
+                    <div class="title">
+                        <h2><i class="fa-solid fa-images"></i> Galeria</h2>
+                    </div>
+                </div>
+                <div class="inside">
+                    <form action="{{ route('products.gallery', $product) }}" method="POST" enctype="multipart/form-data" id="formGallery">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="product_image" class="form-label">Imagen Destacada:</label>
+                            <input class="form-control d-none" type="file" id="product_image" name="product_image" accept="image/*" required>
+                            @error('product_image')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </form>
+                    <div class="tumb">
+                        <a href="#" id="btn_product_file_image" class="btn-primary w-full d-block text-center"><i class="fa-solid fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -198,5 +222,17 @@
                 { name:'document', items: ['CodeSnippet','EmojiPanel','Preview','Source']}
             ]
         } );
+    </script>
+    <script>
+        let btn = document.querySelector('#btn_product_file_image');
+        let fileImage = document.querySelector('#product_image');
+
+        btn.addEventListener('click', () => {
+            fileImage.click();
+        })
+
+        fileImage.addEventListener('change', () => {
+            document.querySelector('#formGallery').submit();
+        })
     </script>
 @endpush

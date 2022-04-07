@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductGalleryRequest;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductGallery;
 use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -90,5 +92,23 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function gallery(Product $product,ProductGalleryRequest $request,ImageService $imageService)
+    {
+        try {
+            if($request->has('product_image')){
+                $path = $imageService->saveImage($request->file('product_image'));
+            }
+
+            ProductGallery::create([
+                'image' => $path,
+                'product_id' => $product->id
+            ]);
+
+            return redirect()->back()->with('success','Imagen agregada exitosamente');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
     }
 }

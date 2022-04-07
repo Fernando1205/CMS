@@ -11,6 +11,8 @@ Route::prefix('admin')->middleware('auth','IsAdmin')->group(function() {
     Route::resource('users', UserController::class);
 
     Route::resource('products', ProductController::class);
+    Route::post('products/{product}/gallery', [ProductController::class, 'gallery'])->name('products.gallery');
+
     Route::get('categories/{module}', [ CategoryController::class, 'index'])->name('categories.name.module');
     Route::resource('categories', CategoryController::class);
 });
