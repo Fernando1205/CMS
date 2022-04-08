@@ -10,7 +10,7 @@
     </a>
     <a href="#">
         &nbsp; / &nbsp;<i class="fa-solid fa-users"></i>
-        Edutar usuario
+        EdItar usuario
     </a>
 </li>
 @endsection
@@ -47,6 +47,19 @@
                         <p class="text-strong">{{ $user->created_at }}</p>
                     </div>
                 </div>
+                @if (!$user->status == 100)
+                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" href="{{ route('users.destroy', $user) }}" class="btn btn-danger d-block w-100">Suspender Usuario</button>
+                    </form>
+                @else
+                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" href="{{ route('users.destroy', $user) }}" class="btn btn-success d-block w-100">Activar Usuario</button>
+                    </form>
+                @endif
             </div>
         </div>
         <div class="col-md-8">

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -57,7 +58,7 @@ class User extends Authenticatable
 
     public function getStatusNameAttribute()
     {
-        return $this->role == 1 ? 'Registrado' : 'No verificado';
+        return $this->status == 1 ? 'Registrado' : 'No verificado';
     }
 
     public function setPasswordAttribute($value)

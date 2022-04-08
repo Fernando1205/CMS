@@ -47,8 +47,19 @@ class UserController extends Controller
         //
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        try {
+            if($user->status != 100) {
+                $user->update(['status' => 100]);
+                $message = 'Usuario suspendido exitosamente';
+            } else {
+                $user->update(['status' => 0]);
+                $message = 'Usuario activado exitosamente';
+            }
+            return redirect()->back()->with('success',$message);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
     }
 }
