@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware('auth','IsAdmin')->group(function() {
+Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(function() {
 
     Route::get('', [DashboardController::class, 'dashboard'])->name('dashboard');
 

@@ -44,6 +44,9 @@ class LoginController extends Controller
     {
         try {
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
+                if(Auth::user()->status == 100){
+                    return redirect('/logout');
+                }
                 return redirect('/admin');
             } else {
                 return redirect()->back()->with('error','Credenciales invalidas');
@@ -55,7 +58,11 @@ class LoginController extends Controller
 
     public function logout()
     {
+        $status = Auth::user()->status;
         Auth::logout();
+        if( $status == 100){
+            return redirect('login')->with('message','Su usuario fue suspendido');
+        }
         return redirect()->route('login');
     }
 }
