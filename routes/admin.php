@@ -13,6 +13,7 @@ Route::prefix('admin')->middleware('auth','IsAdmin')->group(function() {
 
     // Users
     Route::resource('users', UserController::class);
+    Route::get('users/{status}/filter', [UserController::class, 'filter'])->name('users.filter');
 
     // Productos
     Route::resource('products', ProductController::class);

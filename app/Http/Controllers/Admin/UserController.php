@@ -11,7 +11,13 @@ class UserController extends Controller
 {
     public function index(): View
     {
-        $users = User::orderBy('id','desc')->get();
+        $users = User::orderBy('id','desc')->paginate(10);
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function filter($status): View
+    {
+        $users = User::orderBy('id','desc')->where('status',$status)->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 
