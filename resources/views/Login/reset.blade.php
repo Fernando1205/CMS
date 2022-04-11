@@ -17,7 +17,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @enderror
-                    <form method="POST" action="{{ route('mail.recover') }}">
+                    <form method="POST" action="{{ route('resetPass') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">{{ __('Email') }}</label>
@@ -43,6 +43,21 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">{{ __('Contraseña') }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-lock-open"></i></span>
+                                <input type="password" class="form-control" placeholder="********"
+                                    name="password" autocomplete="off"  min="8">
+                            </div>
+                            @error('password')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
                         <button type="submit" class="btn btn-primary w-100">{{ __('Recuperar contraseña') }}</button>
                     </form>
                     <a href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>

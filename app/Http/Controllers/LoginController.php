@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\MailRecoverRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Mail\UserSendRecover;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -44,7 +45,7 @@ class LoginController extends Controller
 
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): RedirectResponse
     {
         try {
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
@@ -60,7 +61,7 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         $status = Auth::user()->status;
         Auth::logout();
@@ -75,7 +76,7 @@ class LoginController extends Controller
         return view('Login.recover');
     }
 
-    public function mailRecover(MailRecoverRequest $request)
+    public function mailRecover(MailRecoverRequest $request): RedirectResponse
     {
         try {
             $user = User::where('email', $request->email)->first();
@@ -94,9 +95,23 @@ class LoginController extends Controller
 
     }
 
-    public function resetPassword(Request $request)
+    public function formResetPassword(Request $request): View
     {
         $data = ['email' => $request->get('email')];
         return view('Login.reset', $data);
+    }
+
+    public function resetPassword(ResetPasswordRequest $request): RedirectResponse
+    {
+        try {
+            $user = User::where('email', $request->email)->first();
+            $user->update([
+                'password' => $request->password,
+                'password_code' => null
+            ]);
+            return redirect()->route('login')->with('success','Contraseña cambiada exitosamente');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
     }
 }

@@ -26,5 +26,6 @@ Route::post('registro', [ LoginController::class, 'register'])->name('registerUs
 Route::get('logout', [ LoginController::class, 'logout'])->name('logout');
 Route::get('recover', [ LoginController::class, 'recover'])->name('recover');
 Route::post('recover', [LoginController::class, 'mailRecover'])->name('mail.recover');
-Route::get('reset', [LoginController::class, 'resetPassword'])->name('reset');
+Route::get('reset', [LoginController::class, 'formResetPassword'])->name('reset');
+Route::post('reset', [LoginController::class, 'resetPassword'])->name('resetPass');
 
