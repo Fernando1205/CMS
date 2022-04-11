@@ -65,6 +65,28 @@ class UserController extends Controller
 
     public function permissions(User $user): View
     {
-        return view('admin.users.permissions.permission');
+        return view('admin.users.permissions.permission', compact('user'));
+    }
+
+    public function userPermissions(Request $request, User $user)
+    {
+        // dd($request->all());
+        try {
+            $permissions = [
+                'dashboard' => $request->dashboard,
+                'products.index' => $request->products_index,
+                'products.store' => $request->products_store,
+                'products.edit' => $request->products_edit,
+                'products.gallery' => $request->products_gallery,
+                'gallery.destroy' => $request->gallery_destroy
+            ];
+            $permissions = json_encode($permissions);
+            $user->update(['permissions' => $permissions]);
+
+            return redirect()->back()->with('success','Los permisos fueron actualizados');
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
     }
 }

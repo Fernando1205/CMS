@@ -15,6 +15,7 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     Route::resource('users', UserController::class);
     Route::get('users/{status}/filter', [UserController::class, 'filter'])->name('users.filter');
     Route::get('users/permissions/{user}', [UserController::class, 'permissions'])->name('users.permission');
+    Route::post('users/permissions/{user}', [UserController::class, 'userPermissions'])->name('users.permission.post');
 
     // Productos
     Route::resource('products', ProductController::class);

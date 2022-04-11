@@ -17,13 +17,30 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row mb-3">
-        @include('admin.users.permissions.module_dashboard')
-        @include('admin.users.permissions.module_products')
-        @include('admin.users.permissions.module_categories')
-    </div>
-    <div class="row">
-        @include('admin.users.permissions.module_users')
+    <div class="page-user">
+        <form action="{{ route('users.permission.post', $user) }}" method="POST">
+            @csrf
+
+            <div class="row mb-3">
+                @include('admin.users.permissions.module_dashboard')
+                @include('admin.users.permissions.module_products')
+                @include('admin.users.permissions.module_categories')
+            </div>
+
+            <div class="row mb-3">
+                @include('admin.users.permissions.module_users')
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel shadow">
+                        <div class="inside">
+                            <input type="submit" value="Guardar" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 @endsection
