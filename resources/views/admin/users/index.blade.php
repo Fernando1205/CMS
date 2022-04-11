@@ -59,6 +59,9 @@
                                 <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
+                                <a href="{{ route('users.permission', $user) }}" class="btn btn-primary">
+                                    <i class="fa-solid fa-user-lock"></i>
+                                </a>
                             </td>
                         </tr>
                         <tr>

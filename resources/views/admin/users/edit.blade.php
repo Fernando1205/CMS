@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title','Edutar usuarios')
+@section('title','Editar usuarios')
 
 @section('breadcrum')
 <li class="breadcrum-item">
@@ -10,7 +10,7 @@
     </a>
     <a href="#">
         &nbsp; / &nbsp;<i class="fa-solid fa-users"></i>
-        EdItar usuario
+        Editar usuario
     </a>
 </li>
 @endsection

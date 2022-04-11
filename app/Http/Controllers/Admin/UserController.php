@@ -62,4 +62,9 @@ class UserController extends Controller
             return redirect()->back()->with('error','Ha ocurrido un error');
         }
     }
+
+    public function permissions(User $user): View
+    {
+        return view('admin.users.permissions.permission');
+    }
 }
