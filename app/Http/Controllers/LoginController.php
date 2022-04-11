@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\MailRecoverRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -64,5 +65,17 @@ class LoginController extends Controller
             return redirect('login')->with('message','Su usuario fue suspendido');
         }
         return redirect()->route('login');
+    }
+
+    public function recover(): View
+    {
+        return view('Login.recover');
+    }
+
+    public function mailRecover(MailRecoverRequest $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        $data = ['name' => $user->name, 'email' => $user->email];
+        return view('emails.recover');
     }
 }

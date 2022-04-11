@@ -86,7 +86,7 @@
                         <button type="submit" class="btn btn-primary w-100">{{ __('Registrarse') }}</button>
                     </form>
                     <a href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
-                    <a href="">Recuperar contraseña</a>
+                    <a href="{{ route('recover') }}">Recuperar contraseña</a>
                 </div>
             </div>
         </div>

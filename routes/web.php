@@ -24,3 +24,5 @@ Route::post('login', [ LoginController::class, 'login'])->name('loginUser');
 Route::get('registro', [ LoginController::class, 'showRegister'])->name('register');
 Route::post('registro', [ LoginController::class, 'register'])->name('registerUser');
 Route::get('logout', [ LoginController::class, 'logout'])->name('logout');
+Route::get('recover', [ LoginController::class, 'recover'])->name('recover');
+Route::post('recover', [LoginController::class, 'mailRecover'])->name('mail.recover');

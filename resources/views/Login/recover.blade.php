@@ -1,6 +1,6 @@
 @extends('Layout.master')
 
-@section('title', 'Login')
+@section('title', 'Recover')
 
 @section('content')
 <div id="login">
@@ -17,13 +17,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @enderror
-                    <form method="POST" action="{{ route('loginUser') }}">
+                    <form method="POST" action="{{ route('mail.recover') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">{{ __('Email') }}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope-open"></i></span>
-                                <input type="email" class="form-control" placeholder="example@example.com" name="email">
+                                <input type="email" class="form-control" placeholder="example@example.com" name="email" required>
                                 @error('email')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -31,24 +31,11 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">{{ __('Contraseña') }}</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock-open"></i></span>
-                                <input type="password" class="form-control" placeholder="********" name="password" autocomplete="off">
-                                @error('password')
-                                    <div class="invalid-feedback d-block">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100">{{ __('Login') }}</button>
+                        <button type="submit" class="btn btn-primary w-100">{{ __('Recuperar contraseña') }}</button>
                     </form>
+                    <a href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                     <a href="{{ route('register') }}">No tienes cuenta Registrate</a>
-                    <a href="{{ route('recover') }}">Recuperar contraseña</a>
+
                 </div>
             </div>
         </div>
