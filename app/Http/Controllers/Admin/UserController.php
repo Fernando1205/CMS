@@ -85,7 +85,7 @@ class UserController extends Controller
                 'categories.edit' => $request->categories_edit,
                 'categories.destroy' => $request->categories_destroy,
                 'users.index' => $request->users_index,
-                'users.create' => $request->users_create,
+                'users.permissions' => $request->users_permissions,
                 'users.edit' => $request->users_edit,
                 'users.destroy' => $request->users_destroy
             ];

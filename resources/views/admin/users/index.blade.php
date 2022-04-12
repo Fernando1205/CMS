@@ -56,12 +56,16 @@
                             <td>{{ $user->status_name }}</td>
                             <td>{{ $user->role_name  }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="{{ route('users.permission', $user) }}" class="btn btn-primary">
-                                    <i class="fa-solid fa-user-lock"></i>
-                                </a>
+                                @if ( keyValueJson(auth()->user()->permissions,'users.edit') )
+                                    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                @endif
+                                @if ( keyValueJson(auth()->user()->permissions,'users.permissions') )
+                                    <a href="{{ route('users.permission', $user) }}" class="btn btn-primary">
+                                        <i class="fa-solid fa-user-lock"></i>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                         <tr>
