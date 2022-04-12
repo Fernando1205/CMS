@@ -198,34 +198,38 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <img src="{{ asset('storage/t_'.$img->image) }}" alt="Producto" class="img-fluid">
-                                    <div class="card-body m-0 p-0">
-                                        <form action="{{ route('gallery.destroy', $img) }}" method="post" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger d-block w-100">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
+                                    @if ( keyValueJson(auth()->user()->permissions,'gallery.destroy') )
+                                        <div class="card-body m-0 p-0">
+                                            <form action="{{ route('gallery.destroy', $img) }}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger d-block w-100">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             @endforeach
                         </div>
                     </div>
-                    <form action="{{ route('products.gallery', $product) }}" method="POST" enctype="multipart/form-data" id="formGallery">
-                        @csrf
-                        <div class="mb-3">
-                            <input class="form-control d-none" type="file" id="product_image" name="product_image" accept="image/*" required>
-                            @error('product_image')
-                                <div class="invalid-feedback d-block">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                    @if ( keyValueJson(auth()->user()->permissions,'products.gallery') )
+                        <form action="{{ route('products.gallery', $product) }}" method="POST" enctype="multipart/form-data" id="formGallery">
+                            @csrf
+                            <div class="mb-3">
+                                <input class="form-control d-none" type="file" id="product_image" name="product_image" accept="image/*" required>
+                                @error('product_image')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </form>
+                        <div class="tumb mb-3">
+                            <a href="#" id="btn_product_file_image" class="btn-primary w-full d-block text-center"><i class="fa-solid fa-plus"></i></a>
                         </div>
-                    </form>
-                    <div class="tumb mb-3">
-                        <a href="#" id="btn_product_file_image" class="btn-primary w-full d-block text-center"><i class="fa-solid fa-plus"></i></a>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

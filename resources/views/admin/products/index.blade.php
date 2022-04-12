@@ -20,11 +20,13 @@
             </div>
         </div>
         <div class="inside">
-            <div class="btns">
-                <a href="{{ route('products.create') }}" class="btn btn-primary">
-                    <i class="fa-solid fa-plus"></i> Crear Producto
-                </a>
-            </div>
+            @if ( keyValueJson(auth()->user()->permissions,'products.store') )
+                <div class="btns">
+                    <a href="{{ route('products.create') }}" class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> Crear Producto
+                    </a>
+                </div>
+            @endif
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -51,16 +53,20 @@
                             <td>{{ $product->category->name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>
-                                <a href="{{ route('products.edit', $product) }}" class="btn btn-primary">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <form action="{{ route('products.destroy', $product) }}" method="post" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
+                                @if ( keyValueJson(auth()->user()->permissions,'products.edit') )
+                                    <a href="{{ route('products.edit', $product) }}" class="btn btn-primary">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                @endif
+                                @if ( keyValueJson(auth()->user()->permissions,'products.destroy') )
+                                    <form action="{{ route('products.destroy', $product) }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

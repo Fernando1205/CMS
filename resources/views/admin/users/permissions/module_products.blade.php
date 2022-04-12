@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 d-flex">
     <div class="panel shadow">
         <div class="header">
             <h2 class="titlte"><i class="fa-solid fa-boxes-stacked"></i> Productos</h2>
@@ -18,6 +18,11 @@
                 <input type="checkbox" class="form-check-input" id="products_edit" name="products_edit"
                     {{ keyValueJson($user->permissions,'products.edit') ? 'checked' : '' }}>
                 <label class="form-check-label" for="products_edit">Puede editar productos</label>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="products_destroy" name="products_destroy"
+                    {{ keyValueJson($user->permissions,'products.destroy') ? 'checked' : '' }}>
+                <label class="form-check-label" for="products_destroy">Puede eliminar productos</label>
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="products_gallery" name="products_gallery"

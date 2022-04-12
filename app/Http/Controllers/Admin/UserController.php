@@ -77,6 +77,7 @@ class UserController extends Controller
                 'products.index' => $request->products_index,
                 'products.store' => $request->products_store,
                 'products.edit' => $request->products_edit,
+                'products.destroy' => $request->products_destroy,
                 'products.gallery' => $request->products_gallery,
                 'gallery.destroy' => $request->gallery_destroy,
                 'categories.index' => $request->categories_index,
