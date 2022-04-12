@@ -78,7 +78,15 @@ class UserController extends Controller
                 'products.store' => $request->products_store,
                 'products.edit' => $request->products_edit,
                 'products.gallery' => $request->products_gallery,
-                'gallery.destroy' => $request->gallery_destroy
+                'gallery.destroy' => $request->gallery_destroy,
+                'categories.index' => $request->categories_index,
+                'categories.create' => $request->categories_create,
+                'categories.edit' => $request->categories_edit,
+                'categories.destroy' => $request->categories_destroy,
+                'users.index' => $request->users_index,
+                'users.create' => $request->users_create,
+                'users.edit' => $request->users_edit,
+                'users.destroy' => $request->users_destroy
             ];
             $permissions = json_encode($permissions);
             $user->update(['permissions' => $permissions]);
