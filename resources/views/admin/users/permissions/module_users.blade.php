@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="users_permissions" name="users_permissions"
-                    {{ keyValueJson($user->permissions,'users.permissions') ? 'checked' : '' }}>
+                    {{ keyValueJson($user->permissions,'users.permission') ? 'checked' : '' }}>
                 <label class="form-check-label" for="users_permissions">Puede administrar permisos de los usuarios</label>
             </div>
         </div>

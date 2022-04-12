@@ -61,7 +61,7 @@
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 @endif
-                                @if ( keyValueJson(auth()->user()->permissions,'users.permissions') )
+                                @if ( keyValueJson(auth()->user()->permissions,'users.permission') )
                                     <a href="{{ route('users.permission', $user) }}" class="btn btn-primary">
                                         <i class="fa-solid fa-user-lock"></i>
                                     </a>

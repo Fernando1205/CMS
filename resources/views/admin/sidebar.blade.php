@@ -35,7 +35,7 @@
                     </a>
                 </li>
             @endif
-            @if ( keyValueJson(auth()->user()->permissions,'categories.index') )
+            @if ( keyValueJson(auth()->user()->permissions,'categories.name.module') )
                 <li>
                     <a href="{{ url('admin/categories/0') }}" class="{{ request()->is('admin/categories*') ?  'active-side' : '' }}">
                         <i class="fa-solid fa-folder"></i>

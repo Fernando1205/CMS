@@ -6,7 +6,7 @@
         <div class="inside">
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="categories_index" name="categories_index"
-                    {{ keyValueJson($user->permissions,'categories.index') ? 'checked' : '' }}>
+                    {{ keyValueJson($user->permissions,'categories.name.module') ? 'checked' : '' }}>
                 <label class="form-check-label" for="categories_index">Puede ver las categorias</label>
             </div>
             <div class="mb-3 form-check">
