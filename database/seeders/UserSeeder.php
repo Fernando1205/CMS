@@ -22,6 +22,29 @@ class UserSeeder extends Seeder
             'lastname' => 'Lopez',
             'email' => 'fer@gmail.com',
             'password' => Hash::make('password'),
+            'permissions' => '{
+                "dashboard":"on",
+                "products.index":"on",
+                "products.store":"on",
+                "products.create":"on",
+                "products.edit":"on",
+                "products.update":"on",
+                "products.destroy":"on",
+                "products.gallery":"on",
+                "gallery.destroy":"on",
+                "categories.name.module":"on",
+                "categories.create":"on",
+                "categories.store":"on",
+                "categories.edit":"on",
+                "categories.update":"on",
+                "categories.destroy":"on",
+                "users.index":"on",
+                "users.filter":"on",
+                "users.permission":"on",
+                "users.permission.post":"on",
+                "users.edit":"on",
+                "users.destroy":"on"
+            }'
         ]);
     }
 }
