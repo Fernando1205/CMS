@@ -21,30 +21,9 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function destroy(User $user)
@@ -76,16 +55,22 @@ class UserController extends Controller
                 'dashboard' => $request->dashboard,
                 'products.index' => $request->products_index,
                 'products.store' => $request->products_store,
+                'products.create' => $request->products_store,
                 'products.edit' => $request->products_edit,
+                'products.update' => $request->products_edit,
                 'products.destroy' => $request->products_destroy,
                 'products.gallery' => $request->products_gallery,
                 'gallery.destroy' => $request->gallery_destroy,
-                'categories.index' => $request->categories_index,
+                'categories.name.module' => $request->categories_index,
                 'categories.create' => $request->categories_create,
+                'categories.store' => $request->categories_create,
                 'categories.edit' => $request->categories_edit,
+                'categories.update' => $request->categories_edit,
                 'categories.destroy' => $request->categories_destroy,
                 'users.index' => $request->users_index,
-                'users.permissions' => $request->users_permissions,
+                'users.filter' => $request->users_index,
+                'users.permission' => $request->users_permissions,
+                'users.permission.post' => $request->users_permissions,
                 'users.edit' => $request->users_edit,
                 'users.destroy' => $request->users_destroy
             ];
