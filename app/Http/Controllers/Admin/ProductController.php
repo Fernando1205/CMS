@@ -99,7 +99,14 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        //
+        try {
+            $product->delete();
+            return redirect()->back()->with('success','Producto eliminado exitosamente');
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error','Ha ocurrido un error');
+        }
+
     }
 
     public function gallery(Product $product,ProductGalleryRequest $request,ImageService $imageService)
