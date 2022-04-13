@@ -39,12 +39,30 @@
                 </ul>
             </div>
             <div class="d-inline my-3">
-                <div class="input-group my-3 ">
-                    <input type="text" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                  </div>
+                <form action="{{ route('products.search') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="input-group my-3 ">
+                                <input type="text" class="form-control" placeholder="Buscar" name="text" id="text">
+                            </div>
+                        </div>
+                    <div class="col-md-5">
+                        <div class="input-group my-3 ">
+                            <select name="search" id="search" class="form-select">
+                                <option value="name">Nombre</option>
+                                <option value="code">Codigo</option>
+                            </select>
+                        </div>
+                    </div>
+                   <div class="col-md-2">
+                        <div class="input-group my-3 ">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                   </div>
+                </form>
             </div>
 
             <table class="table table-striped">
@@ -53,6 +71,7 @@
                         <td>ID</td>
                         <td></td>
                         <td>Nombre:</td>
+                        <td>Codigo:</td>
                         <td>Categoría</td>
                         <td>Precio:</td>
                         <td></td>
@@ -70,6 +89,7 @@
                                 </a>
                             </td>
                             <td>{{ $product->name }} {!! $product->status != 1 ? '<i class="fa-solid fa-eraser"></i>' : '' !!}</td>
+                            <td>{{ $product->code }}</td>
                             <td>{{ $product->category->name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>

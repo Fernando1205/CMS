@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductGalleryRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductSearchRequest;
 use App\Http\Requests\ProductUpdRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -48,6 +49,16 @@ class ProductController extends Controller
                 $products = [];
                 break;
         }
+        return view('admin.products.index', compact('products'));
+    }
+
+    public function search(ProductSearchRequest $request): View
+    {
+        $products = Product::where($request->search,'like', '%'. $request->text.'%')
+            ->orderBy('id','desc')
+            ->with('category')
+            ->paginate(10);
+
         return view('admin.products.index', compact('products'));
     }
 
