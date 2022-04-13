@@ -31,6 +31,8 @@ class ProductRequest extends FormRequest
             'indiscount' => 'nullable',
             'discount' => 'nullable|numeric',
             'content' => 'required',
+            'code' => 'required|alpha_num',
+            'stock' => 'required|numeric'
         ];
     }
 
@@ -42,7 +44,9 @@ class ProductRequest extends FormRequest
             'image.required' => 'Imagen requerida',
             'price.required' => 'Precio requerido',
             'discount.numeric' => 'Debe ser un precio valido',
-            'content.required' => 'Contenido requerido'
+            'content.required' => 'Contenido requerido',
+            'code.required' => 'Codigo del producto requerido',
+            'stock.required' => 'Inventario requerido'
         ];
     }
 }

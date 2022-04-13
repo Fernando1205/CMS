@@ -44,6 +44,8 @@ class ProductController extends Controller
                 'indiscount' => $request->indiscount,
                 'discount' => $request->discount ?? 0,
                 'content' => $request->content,
+                'code' => $request->code,
+                'stock' => $request->stock
             ]);
 
             return redirect()->back()->with('success','Producto creado exitosamente');
@@ -84,6 +86,8 @@ class ProductController extends Controller
                 'indiscount' => $request->indiscount,
                 'discount' => $request->discount ?? 0,
                 'content' => $request->content,
+                'code' => $request->code,
+                'stock' => $request->stock
             ]);
 
             return redirect()->back()->with('success','Producto actualizado exitosamente');

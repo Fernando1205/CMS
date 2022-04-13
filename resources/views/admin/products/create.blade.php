@@ -140,6 +140,43 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="stock" class="form-label">Inventario:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+                                <input type="number" class="form-control" id="stock" name="stock"
+                                    value="{{ old('stock') }}" min="0" step="any">
+                                @error('stock')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="code" class="form-label">Codigo de sistema:</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa-solid fa-cubes-stacked"></i>
+                                </div>
+                                <input type="text" class="form-control" id="code" name="code"
+                                    value="{{ old('code') }}">
+                                @error('code')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label for="content" class="form-label">Descripción</label>
