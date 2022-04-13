@@ -22,6 +22,35 @@ class ProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
+    public function filter($status): View
+    {
+        switch ($status) {
+            case '0':
+                $products = Product::orderBy('id','desc')
+                    ->with('category')
+                    ->where('status',$status)
+                    ->paginate(10);
+                break;
+            case '1':
+                $products = Product::orderBy('id','desc')
+                    ->with('category')
+                    ->where('status',$status)
+                    ->paginate(10);
+                break;
+            case 'trash':
+                $products = Product::onlyTrashed()
+                    ->orderBy('id','desc')
+                    ->with('category')
+                    ->paginate(10);
+                break;
+
+            default:
+                $products = [];
+                break;
+        }
+        return view('admin.products.index', compact('products'));
+    }
+
     public function create(): View
     {
         $categories = Category::where('module', '0')->get();
@@ -100,7 +129,12 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         try {
-            $product->delete();
+            if($product->status != 0){
+                $product->update(['status' => 0]);
+            } else {
+                $product->delete();
+            }
+
             return redirect()->back()->with('success','Producto eliminado exitosamente');
 
         } catch (\Throwable $th) {

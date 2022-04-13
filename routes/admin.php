@@ -7,25 +7,26 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware('auth','IsAdmin','userStatus','userPermissions')->group(function() {
+Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(function() {
 
     Route::get('', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     // Users
-    Route::resource('users', UserController::class)->only('index','edit','destroy');
+    Route::resource('users', UserController::class)->only('index','edit','destroy')->middleware('userPermissions');
     Route::get('users/{status}/filter', [UserController::class, 'filter'])->name('users.filter');
-    Route::get('users/permissions/{user}', [UserController::class, 'permissions'])->name('users.permission');
-    Route::post('users/permissions/{user}', [UserController::class, 'userPermissions'])->name('users.permission.post');
+    Route::get('users/permissions/{user}', [UserController::class, 'permissions'])->name('users.permission')->middleware('userPermissions');
+    Route::post('users/permissions/{user}', [UserController::class, 'userPermissions'])->name('users.permission.post')->middleware('userPermissions');
 
     // Productos
-    Route::resource('products', ProductController::class)->except('show');
-    Route::post('products/{product}/gallery', [ProductController::class, 'gallery'])->name('products.gallery');
+    Route::resource('products', ProductController::class)->except('show')->middleware('userPermissions');
+    Route::get('products/{status}/filter', [ProductController::class, 'filter'])->name('products.filter');
+    Route::post('products/{product}/gallery', [ProductController::class, 'gallery'])->name('products.gallery')->middleware('userPermissions');
 
     // Galeria productos
-    Route::resource('gallery', ProductGalleryController::class)->only('destroy');
+    Route::resource('gallery', ProductGalleryController::class)->only('destroy')->middleware('userPermissions');
 
     // Categorias
-    Route::get('categories/{module}', [ CategoryController::class, 'index'])->name('categories.name.module');
-    Route::resource('categories', CategoryController::class)->except('show','index');
+    Route::get('categories/{module}', [ CategoryController::class, 'index'])->name('categories.name.module')->middleware('userPermissions');
+    Route::resource('categories', CategoryController::class)->except('show','index')->middleware('userPermissions');
 
 });

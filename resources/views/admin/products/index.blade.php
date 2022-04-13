@@ -21,12 +21,32 @@
         </div>
         <div class="inside">
             @if ( keyValueJson(auth()->user()->permissions,'products.store') )
-                <div class="btns">
+                <div class="btns d-inline">
                     <a href="{{ route('products.create') }}" class="btn btn-primary">
                         <i class="fa-solid fa-plus"></i> Crear Producto
                     </a>
                 </div>
             @endif
+            <div class="dropdown d-inline-block">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-filter"></i> Filtrar
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ route('products.index') }}"><i class="fa-solid fa-list"></i> Todos</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.filter', 1) }}"><i class="fa-solid fa-user-clock"></i> Publicos</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.filter', 0) }}"><i class="fa-solid fa-eraser"></i> Borrador</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.filter', ['status' => 'trash']) }}"><i class="fa-solid fa-trash"></i> Papelera</a></li>
+                </ul>
+            </div>
+            <div class="d-inline my-3">
+                <div class="input-group my-3 ">
+                    <input type="text" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                  </div>
+            </div>
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -40,7 +60,7 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
-                        <tr class="{{ $product->status != 1 ? 'table-danger' : ''}}">
+                        <tr>
                             <td>{{ $product->id }}</td>
                             <td>
                                 <a href="{{ asset('storage/'.$product->image) }}"
@@ -49,7 +69,7 @@
                                     <img src="{{ asset('storage/t_'.$product->image) }}" alt="Producto" width="64">
                                 </a>
                             </td>
-                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->name }} {!! $product->status != 1 ? '<i class="fa-solid fa-eraser"></i>' : '' !!}</td>
                             <td>{{ $product->category->name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>
