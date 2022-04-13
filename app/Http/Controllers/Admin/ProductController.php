@@ -140,17 +140,19 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         try {
-            if($product->status != 0){
-                $product->update(['status' => 0]);
-            } else {
-                $product->delete();
-            }
-
+            $product->delete();
             return redirect()->back()->with('success','Producto eliminado exitosamente');
 
         } catch (\Throwable $th) {
             return redirect()->back()->with('error','Ha ocurrido un error');
         }
+    }
+
+    public function restore($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        $product->restore();
+        return redirect()->back()->with('success','Producto restaurado exitosamente');
 
     }
 

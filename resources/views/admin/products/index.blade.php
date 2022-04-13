@@ -99,13 +99,22 @@
                                     </a>
                                 @endif
                                 @if ( keyValueJson(auth()->user()->permissions,'products.destroy') )
-                                    <form action="{{ route('products.destroy', $product) }}" method="post" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    @if (is_null($product->deleted_at))
+                                        <form method="post" class="d-inline" id="formDeleteProduct">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger product-delete" data-product="{{ $product->id }}" data-action="delete">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form method="post" class="d-inline" id="formDeleteProduct">
+                                            @csrf
+                                            <button class="btn btn-success product-delete" data-product="{{ $product->id }}" data-action="restore">
+                                                <i class="fa-solid fa-recycle"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 @endif
                             </td>
                         </tr>
@@ -119,3 +128,6 @@
     </div>
 </div>
 @endsection
+@push('script')
+<script src="{{ asset('js/product.js') }}"></script>
+@endpush

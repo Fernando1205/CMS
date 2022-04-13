@@ -21,6 +21,7 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     Route::resource('products', ProductController::class)->except('show')->middleware('userPermissions');
     Route::get('products/{status}/filter', [ProductController::class, 'filter'])->name('products.filter');
     Route::post('products/search', [ProductController::class, 'search'])->name('products.search');
+    Route::post('products/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
     Route::post('products/{product}/gallery', [ProductController::class, 'gallery'])->name('products.gallery')->middleware('userPermissions');
 
     // Galeria productos
