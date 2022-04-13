@@ -35,3 +35,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.toastr = require('toastr');
 // FancyBox
 window.Fancybox = require('@fancyapps/ui');
+// Sweet Alert
+window.Swal = require('sweetalert2');
