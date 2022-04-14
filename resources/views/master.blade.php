@@ -52,9 +52,14 @@
                                     <i class="fa-solid fa-circle-user"></i> {{ auth()->user()->name }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li>
-                                        <a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen"></i> Editar Información</a>
+                                    @if (auth()->user()->role == 1)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="fa-solid fa-user-shield"></i> Administración</a>
                                         </li>
+                                    @endif
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('perfil.edit', ['perfil' => auth()->user()->id]) }}"><i class="fa-solid fa-user-pen"></i> Editar Información</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                                     </li>
