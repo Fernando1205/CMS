@@ -12,7 +12,7 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     Route::get('', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     // Users
-    Route::resource('users', UserController::class)->only('index','edit','destroy')->middleware('userPermissions');
+    Route::resource('users', UserController::class)->only('index','edit','update','destroy')->middleware('userPermissions');
     Route::get('users/{status}/filter', [UserController::class, 'filter'])->name('users.filter');
     Route::get('users/permissions/{user}', [UserController::class, 'permissions'])->name('users.permission')->middleware('userPermissions');
     Route::post('users/permissions/{user}', [UserController::class, 'userPermissions'])->name('users.permission.post')->middleware('userPermissions');

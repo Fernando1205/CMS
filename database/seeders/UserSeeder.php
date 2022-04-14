@@ -43,6 +43,7 @@ class UserSeeder extends Seeder
                 "users.permission":"on",
                 "users.permission.post":"on",
                 "users.edit":"on",
+                "users.update":"on",
                 "users.destroy":"on"
             }'
         ]);

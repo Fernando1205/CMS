@@ -74,6 +74,24 @@
                 </div>
 
                 <div class="inside">
+                    @if ( keyValueJson(auth()->user()->permissions,'users.edit') )
+                        <form action="{{ route('users.update', $user) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label">Tipo de usuario:</label>
+                                        <select class="form-select" aria-label="Default select example" id="role" name="role">
+                                            <option value="1" {{ $user->role == 1 ? 'selected' : ''}}>Administrador</option>
+                                            <option value="0" {{ $user->role == 0 ? 'selected' : ''}}>Usuario Normal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" value="Guardar" class="btn btn-success">
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>

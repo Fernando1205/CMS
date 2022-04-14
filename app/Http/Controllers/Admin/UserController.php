@@ -26,6 +26,23 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
+    public function update(Request $request, User $user)
+    {
+        if($request->role == 1){
+            $user->update([
+                'role' => $request->role,
+                'permissions' => '{"dashboard":"on"}'
+            ]);
+        } else {
+            $user->update([
+                'role' => $request->role,
+                'permissions' => NULL
+            ]);
+        }
+        return redirect()->back()->with('success','Usuario actualizado correctamente');
+
+    }
+
     public function destroy(User $user)
     {
         try {
@@ -72,6 +89,7 @@ class UserController extends Controller
                 'users.permission' => $request->users_permissions,
                 'users.permission.post' => $request->users_permissions,
                 'users.edit' => $request->users_edit,
+                'users.update' => $request->users_edit,
                 'users.destroy' => $request->users_destroy
             ];
             $permissions = json_encode($permissions);
