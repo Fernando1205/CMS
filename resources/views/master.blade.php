@@ -12,9 +12,9 @@
         @stack('css')
 
     </head>
-    <body>
+    <body class="overflow-hidden">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" width="50px">
                 </a>
@@ -23,17 +23,45 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item pe-3">
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-house"></i> Inicio</a>
                         </li>
+                        <li class="nav-item pe-3">
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-store"></i> Tienda</a>
+                        </li>
+                        <li class="nav-item pe-3">
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-building"></i> Sobre nosotros</a>
+                        </li>
+                        <li class="nav-item pe-3">
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-address-book"></i> Contacto</a>
+                        </li>
+                        <li class="nav-item pe-3">
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-cart-shopping"></i> <span>0</span></a>
+                        </li>
                         @guest
-                            <li class="nav-item">
+                            <li class="nav-item pe-3">
                                 <a class="nav-link" href="{{ route('login') }}"><i class="fa-solid fa-circle-user"></i> Mi cuenta</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item pe-3">
                                 <a class="nav-link" href="{{ route('register') }}"><i class="fa-solid fa-user-plus"></i> Crear cuenta</a>
                             </li>
                         @endguest
+                        @auth
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-circle-user"></i> {{ auth()->user()->name }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen"></i> Editar Información</a>
+                                        </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        @endauth
                     </ul>
                 </div>
             </div>
