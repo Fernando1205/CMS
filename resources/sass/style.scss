@@ -2,6 +2,15 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// Variables
+$color1:#2caaff;
+$color2: #ff291a;
 body {
-    background-color: aqua;
+    background-color: #f9f9f9;
+    font-size: 14px;
+}
+
+nav {
+    background-color: #fff;
+    border-bottom: 1px solid $color1;
 }
