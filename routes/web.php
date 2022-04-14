@@ -29,4 +29,4 @@ Route::post('recover', [LoginController::class, 'mailRecover'])->name('mail.reco
 Route::get('reset', [LoginController::class, 'formResetPassword'])->name('reset');
 Route::post('reset', [LoginController::class, 'resetPassword'])->name('resetPass');
 
-Route::resource('perfil', UserController::class)->middleware('auth');
+Route::resource('perfil', UserController::class)->only('edit','update')->middleware('auth');
