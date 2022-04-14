@@ -66,7 +66,6 @@ class UserController extends Controller
 
     public function userPermissions(Request $request, User $user)
     {
-        // dd($request->all());
         try {
             $permissions = [
                 'dashboard' => $request->dashboard,
