@@ -8,10 +8,27 @@
             <div class="col-md-4 d-flex mb-3">
                 <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title"><i class="fa-solid fa-image"></i> Editar avatar</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
+                        <h5 class="card-title"><i class="fa-solid fa-camera"></i> Editar avatar</h5>
+                        <hr>
+                        <form action="{{ route('perfil.avatar', $perfil) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @if ($perfil->avatar)
+                                <img src="{{ asset('storage/'.$perfil->avatar) }}" alt="avatar"
+                                    class="d-block m-auto rounded-circle" width="40%">
+                            @else
+                                <img src="{{ asset('images/avatar.jpg') }}" alt="avatar"
+                                    class="d-block m-auto rounded-circle" width="40%">
+                            @endif
+                            <div class="my-3">
+                                <input class="form-control" type="file" id="image" name="image" accept="image/*" >
+                                @error('image')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <input type="submit" value="Actualizar" class="btn btn-success">
+                        </form>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@
         @stack('css')
 
     </head>
-    <body class="overflow-hidden">
+    <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">

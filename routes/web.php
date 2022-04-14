@@ -30,3 +30,6 @@ Route::get('reset', [LoginController::class, 'formResetPassword'])->name('reset'
 Route::post('reset', [LoginController::class, 'resetPassword'])->name('resetPass');
 
 Route::resource('perfil', UserController::class)->only('edit','update')->middleware('auth');
+Route::post('perfil/{perfil}/avatar', [UserController::class,'avatar'])->name('perfil.avatar');
+Route::post('perfil/{perfil}/pass', [UserController::class,'avatar'])->name('perfil.updatePass');
+
