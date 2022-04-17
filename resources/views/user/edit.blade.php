@@ -20,8 +20,8 @@
                                     class="d-block m-auto rounded-circle" width="40%">
                             @endif
                             <div class="my-3">
-                                <input class="form-control" type="file" id="image" name="image" accept="image/*" >
-                                @error('image')
+                                <input class="form-control" type="file" id="avatar" name="avatar" accept="image/*" >
+                                @error('avatar')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
                                     </div>
@@ -99,19 +99,19 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Contraseña actual:</label>
-                                        <input type="password" class="form-control" id="password" placeholder="********">
+                                        <input type="password" class="form-control" id="password" placeholder="********" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="newPassword" class="form-label">Nueva Contraseña:</label>
-                                        <input type="password" class="form-control" id="newPassword" placeholder="********">
+                                        <input type="password" class="form-control" id="newPassword" placeholder="********" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="confirmPassword" class="form-label">Confirmar Contraseña:</label>
-                                        <input type="password" class="form-control" id="confirmPassword" placeholder="********">
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="********" autocomplete="off">
                                     </div>
                                 </div>
                             </div>

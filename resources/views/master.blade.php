@@ -75,9 +75,23 @@
             <div class="col2">
                 @yield('content')
             </div>
-
         </div>
+
         <script src="{{ asset('js/app.js') }}"></script>
+        {{-- JQUERY --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        <script>
+            @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            toastr.warning("{{ $error }}");
+            @endforeach
+            @endif
+            @if (session('success'))
+                toastr.success("{{ session('success') }}");
+            @elseif (session('error'))
+                toastr.error("{{ session('error') }}");
+            @endif
+        </script>
         @stack('script')
     </body>
 </html>
