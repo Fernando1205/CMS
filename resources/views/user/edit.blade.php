@@ -44,13 +44,23 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nombre:</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Fernando" value="{{ $perfil->name }}">
+                                        <input type="text" class="form-control" id="name" placeholder="Fernando" value="{{ $perfil->name }}" name="name">
+                                        @error('name')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="lastname" class="form-label">Apellidos:</label>
-                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lopez" value="{{ $perfil->lastanme }}">
+                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lopez" value="{{ $perfil->lastname }}">
+                                        @error('lastname')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -63,23 +73,38 @@
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Telefono:</label>
                                         <input type="number" class="form-control" id="phone" name="phone" value="{{ $perfil->phone }}" placeholder="7771234567">
+                                        @error('phone')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="birthday" class="form-label">Fecha de nacimiento:</label>
                                         <input type="date" class="form-control" id="birthday" name="birthday" value="{{ $perfil->birthday }}">
+                                        @error('birthday')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="disabledSelect" class="form-label">Disabled select menu</label>
-                                        <select class="form-select">
-                                            <option value="">--Seleccione--</option>
-                                            <option value="0" {{ $perfil->gender == 1 ? 'selected' : '' }}>Sin especificar</option>
+                                        <label for="disabledSelect" class="form-label">Genero</label>
+                                        <select class="form-select" id="gender" name="gender">
+                                            <option>--Seleccione--</option>
+                                            <option value="0" {{ $perfil->gender == 0 ? 'selected' : '' }}>Sin especificar</option>
                                             <option value="1" {{ $perfil->gender == 1 ? 'selected' : '' }}>Hombre</option>
                                             <option value="2" {{ $perfil->gender == 2 ? 'selected' : '' }}>Mujer</option>
                                         </select>
+                                        @error('gender')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -99,19 +124,37 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Contraseña actual:</label>
-                                        <input type="password" class="form-control" id="password" placeholder="********" autocomplete="off">
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="********" autocomplete="off">
+                                        @error('password')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="newPassword" class="form-label">Nueva Contraseña:</label>
-                                        <input type="password" class="form-control" id="newPassword" placeholder="********" autocomplete="off">
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword"
+                                            placeholder="********" autocomplete="off">
+                                        @error('newPassword')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="confirmPassword" class="form-label">Confirmar Contraseña:</label>
-                                        <input type="password" class="form-control" id="confirmPassword" placeholder="********" autocomplete="off">
+                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                            placeholder="********" autocomplete="off">
+                                        @error('confirmPassword')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
