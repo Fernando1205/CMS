@@ -62,10 +62,19 @@
             </li>
         @endif
 
+        @if ( keyValueJson(auth()->user()->permissions,'slider.index') )
+            <li>
+                <a href="{{ route('slider.index') }}" class="{{ request()->is('admin/slider*') ?  'active-side' : '' }}">
+                    <i class="fa-solid fa-images"></i>
+                    Sliders
+                </a>
+            </li>
+        @endif
+
         @if ( keyValueJson(auth()->user()->permissions,'config.orders') )
             <li>
-                <a href="{{ route('users.index') }}" class="{{ request()->is('admin/orders*') ?  'active-side' : '' }}">
-                    <i class="fa-solid fa-clipboard-list"></i></i>
+                <a href="" class="{{ request()->is('admin/orders*') ?  'active-side' : '' }}">
+                    <i class="fa-solid fa-clipboard-list"></i>
                     Ordenes
                 </a>
             </li>

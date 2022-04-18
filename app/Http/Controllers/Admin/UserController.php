@@ -91,7 +91,8 @@ class UserController extends Controller
                 'users.update' => $request->users_edit,
                 'users.destroy' => $request->users_destroy,
                 'settings.index' => $request->settings_index,
-                'config.orders' => $request->config_orders
+                'config.orders' => $request->config_orders,
+                'slider.index' => $request->slider_index,
             ];
             $permissions = json_encode($permissions);
             $user->update(['permissions' => $permissions]);

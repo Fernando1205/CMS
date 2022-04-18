@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,9 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     // Configuraciones
     Route::resource('settings', SettingsController::class)->only('index')->middleware('userPermissions');
     Route::post('settings', [SettingsController::class, 'postHome'])->name('settings');
+
+    // Slider
+    Route::get('slider',SliderController::class)->name('slider.index')->middleware('userPermissions');
 
 
 });

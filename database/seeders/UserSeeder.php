@@ -46,7 +46,8 @@ class UserSeeder extends Seeder
                 "users.update":"on",
                 "users.destroy":"on",
                 "settings.index": "on",
-                "config.orders": "on"
+                "config.orders": "on",
+                "slider.index": "on"
             }'
         ]);
     }

@@ -33,6 +33,10 @@
                 @include('admin.users.permissions.module_orders')
             </div>
 
+            <div class="row mb-3">
+                @include('admin.users.permissions.module_slider')
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel shadow">
