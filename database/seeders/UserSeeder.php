@@ -44,7 +44,9 @@ class UserSeeder extends Seeder
                 "users.permission.post":"on",
                 "users.edit":"on",
                 "users.update":"on",
-                "users.destroy":"on"
+                "users.destroy":"on",
+                "config.index": "on",
+                "config.orders": "on"
             }'
         ]);
     }
