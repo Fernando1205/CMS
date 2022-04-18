@@ -52,6 +52,24 @@
                     </a>
                 </li>
             @endif
+
+            @if ( keyValueJson(auth()->user()->permissions,'settings.index') )
+            <li>
+                <a href="{{ route('settings.index') }}" class="{{ request()->is('admin/settings*') ?  'active-side' : '' }}">
+                    <i class="fa-solid fa-gear"></i>
+                    Configuraciones
+                </a>
+            </li>
+        @endif
+
+        @if ( keyValueJson(auth()->user()->permissions,'config.orders') )
+            <li>
+                <a href="{{ route('users.index') }}" class="{{ request()->is('admin/orders*') ?  'active-side' : '' }}">
+                    <i class="fa-solid fa-clipboard-list"></i></i>
+                    Ordenes
+                </a>
+            </li>
+        @endif
         </ul>
     </div>
 </div>

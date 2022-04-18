@@ -29,6 +29,8 @@
 
             <div class="row mb-3">
                 @include('admin.users.permissions.module_users')
+                @include('admin.users.permissions.module_config')
+                @include('admin.users.permissions.module_orders')
             </div>
 
             <div class="row">

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,8 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     // Categorias
     Route::get('categories/{module}', [ CategoryController::class, 'index'])->name('categories.name.module')->middleware('userPermissions');
     Route::resource('categories', CategoryController::class)->except('show','index')->middleware('userPermissions');
+
+    // Configuraciones
+    Route::resource('settings', SettingsController::class)->only('index')->middleware('userPermissions');
 
 });
