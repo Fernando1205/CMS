@@ -34,5 +34,7 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
 
     // Configuraciones
     Route::resource('settings', SettingsController::class)->only('index')->middleware('userPermissions');
+    Route::post('settings', [SettingsController::class, 'postHome'])->name('settings');
+
 
 });
