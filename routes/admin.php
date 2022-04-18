@@ -39,6 +39,7 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
 
     // Slider
     Route::get('slider',SliderController::class)->name('slider.index')->middleware('userPermissions');
+    Route::resource('slider', SliderController::class)->only('store');
 
 
 });
