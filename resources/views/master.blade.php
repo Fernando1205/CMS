@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="routeName" content="{{ Route::currentRouteName() }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="auth" content="{{ Auth::id() }}">
         <title>CMS - @yield('title', 'Laravel')</title>
 
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -59,6 +61,9 @@
                                     @endif
                                     <li>
                                         <a class="dropdown-item" href="{{ route('perfil.edit', ['perfil' => auth()->user()->id]) }}"><i class="fa-solid fa-user-pen"></i> Editar Información</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('perfil.edit', ['perfil' => auth()->user()->id]) }}"><i class="fa-solid fa-heart"></i>  Favoritos</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>

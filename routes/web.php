@@ -37,4 +37,5 @@ Route::post('perfil/{perfil}/pass', [UserController::class,'updatePassword'])->n
 
 // Ajax Api Routers
 Route::get('md/api/load/products/{section}',[ApiAjaxController::class,'getProductsSection']);
+Route::post('md/api/favorites/add/{id}/{module}',[ApiAjaxController::class,'postFavoriteAdd']);
 
