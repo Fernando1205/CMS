@@ -48,8 +48,8 @@
                                 <div class="mb-3">
                                     <label for="visible" class="form-label">Visible:</label>
                                     <select class="form-select" aria-label="Default select example" id="visible" name="visible">
-                                        <option value="true" {{ old('visible') }}>Visible</option>
-                                        <option value="false" {{ old('visible') }}>No visible</option>
+                                        <option value="1" {{ old('visible') }}>Visible</option>
+                                        <option value="0" {{ old('visible') }}>No visible</option>
                                     </select>
                                     @error('visible')
                                     <div class="invalid-feedback d-block">

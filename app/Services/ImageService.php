@@ -29,4 +29,11 @@ class ImageService {
         Storage::delete('public/t_'.$path);
     }
 
+    public function saveImageSlider( $file ): string
+    {
+        $fileName = $file->hashName();
+        $path = $file->storeAs('',$fileName, 'public');
+        return $path;
+    }
+
 }
