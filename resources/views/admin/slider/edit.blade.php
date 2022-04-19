@@ -15,17 +15,18 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="panel shadow">
                 <div class="header">
                     <div class="title">
-                        <h2> <i class="fa-solid fa-images"></i> Agregar slider</h2>
+                        <h2> <i class="fa-solid fa-images"></i> Editar slider</h2>
                     </div>
                 </div>
 
                 <div class="inside">
-                    <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('slider.update', $slider) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
@@ -35,7 +36,7 @@
                                             <i class="fa-solid fa-keyboard"></i>
                                         </div>
                                         <input type="text" class="form-control" id="name" name="name"
-                                            value="{{ old('name') }}">
+                                            value="{{ $slider->name }}">
                                     </div>
                                     @error('name')
                                         <div class="invalid-feedback d-block">
@@ -48,8 +49,8 @@
                                 <div class="mb-3">
                                     <label for="visible" class="form-label">Visible:</label>
                                     <select class="form-select" aria-label="Default select example" id="visible" name="visible">
-                                        <option value="1" {{ old('visible') }}>Visible</option>
-                                        <option value="0" {{ old('visible') }}>No visible</option>
+                                        <option value="1" {{ $slider->visible == 1 ? 'selected' : ''}}>Visible</option>
+                                        <option value="0" {{ $slider->visible == 0 ? 'selected' : '' }}>No visible</option>
                                     </select>
                                     @error('visible')
                                     <div class="invalid-feedback d-block">
@@ -58,24 +59,10 @@
                                 @enderror
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label for="image" class="form-label">Imagen:</label>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="image" name="image">
-                                    </div>
-                                    @error('image')
-                                        <div class="invalid-feedback d-block">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <div class="mb-3">
                                 <label for="content" class="form-label">Contenido:</label>
                                 <div class="input-group">
-                                    <textarea name="content" id="content" rows="5" class="form-control">{{ old('content') }}</textarea>
+                                    <textarea name="content" id="content" rows="5" class="form-control">{{ $slider->content }}</textarea>
                                 </div>
                                 @error('content')
                                     <div class="invalid-feedback d-block">
@@ -90,7 +77,7 @@
                                         <i class="fa-solid fa-keyboard"></i>
                                     </div>
                                     <input type="number" class="form-control" id="order" name="order"
-                                        value="{{ old('order') }}" min="1">
+                                        value="{{ $slider->order }}" min="1">
                                 </div>
                                 @error('order')
                                     <div class="invalid-feedback d-block">
@@ -99,55 +86,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <input type="submit" value="Enviar" class="btn btn-success">
+                        <input type="submit" value="Actualizar" class="btn btn-success">
                     </form>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-8">
-            <div class="panel shadow">
-                <div class="header">
-                    <div class="title">
-                        <h2> <i class="fa-solid fa-images"></i> Imagenes de slider</h2>
-                    </div>
-                </div>
-                <div class="inside">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        @foreach ($sliders as $sli)
-                            <tr>
-                                <td><img src="{{ asset('storage/'.$sli->image) }}" class="img-fluid" width="100px"></td>
-                                <td>{{ $sli->name }}</td>
-                                <td>{{ $sli->content }}</td>
-                                <td>{{ $sli->order }}</td>
-                                <td>
-                                    <a href="{{ route('slider.edit', $sli) }}" class="btn btn-primary">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    <form action="{{ route('slider.destroy', $sli) }}" method="post" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 @endsection
