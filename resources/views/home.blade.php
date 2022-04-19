@@ -56,7 +56,7 @@
         </div>
 
         <section class="my-3">
-            <div id="products_list" class="producsts_list d-flex flex-wrap"></div>
+            <div id="products_list" class="producsts_list d-flex flex-wrap justify-content-center"></div>
         </section>
     </div>
 @endsection

@@ -22,10 +22,13 @@ function showProducts(products) {
 
     products.forEach(product => {
         div +=
-            `<div class='product px-2'>
+            `<div class='product p-2'>
                 <img src='${base}/storage/t_${product.image}'>
                 <h5>${product.name}</h5>
                 <p class="fs-5"><strong>$${product.price}</strong></p>
+                <a href="" class="btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
+                <a href="" class="btn-sm btn-danger"><i class="fa-solid fa-heart"></i></a>
+                <a href="" class="btn-sm btn-success"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>`
     });
 
