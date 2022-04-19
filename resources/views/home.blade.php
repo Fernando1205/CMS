@@ -38,15 +38,11 @@
         <div class="header">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('images/avatar.jpg') }}" class="d-block w-100" alt="" height="300px">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('images/logo.png') }}" class="d-block w-100" alt="" height="300px">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('images/logo.png') }}" class="d-block w-100" alt="" height="300px">
-                    </div>
+                    @foreach($sliders as $key => $sli)
+                        <div class="carousel-item {{ $key == 1 ? 'active' : ''}}">
+                            <img src="{{ asset('storage/'.$sli->image) }}" class="d-block w-100" alt="" height="300px">
+                        </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
