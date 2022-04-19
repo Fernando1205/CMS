@@ -57,6 +57,12 @@
 
         <section class="my-3">
             <div id="products_list" class="producsts_list d-flex flex-wrap justify-content-center"></div>
+            <div class="load">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination" id="pagination">
+                    </ul>
+                </nav>
+            </div>
         </section>
     </div>
 @endsection

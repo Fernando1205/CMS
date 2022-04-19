@@ -13,11 +13,11 @@ class ApiAjaxController extends Controller
         $section = $request->section;
         switch ($section) {
             case 'home':
-                $products = Product::where('status',1)->inRandomOrder()->paginate(10);
+                $products = Product::where('status',1)->inRandomOrder()->paginate(4);
                 break;
 
             default:
-                $products = Product::where('status',1)->inRandomOrder()->paginate(10);
+                $products = Product::where('status',1)->inRandomOrder()->paginate(4);
                 break;
         }
         return response()->json(['products' => $products]);
