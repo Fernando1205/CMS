@@ -54,5 +54,12 @@
                   </button>
             </div>
         </div>
+
+        <section class="my-3">
+            <div id="products_list" class="producsts_list d-flex flex-wrap"></div>
+        </section>
     </div>
 @endsection
+@push('script')
+    <script src="{{ asset('js/home.js') }}"></script>
+@endpush

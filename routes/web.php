@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ApiAjaxController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +34,7 @@ Route::post('reset', [LoginController::class, 'resetPassword'])->name('resetPass
 Route::resource('perfil', UserController::class)->only('edit','update')->middleware('auth');
 Route::post('perfil/{perfil}/avatar', [UserController::class,'avatar'])->name('perfil.avatar');
 Route::post('perfil/{perfil}/pass', [UserController::class,'updatePassword'])->name('perfil.updatePass');
+
+// Ajax Api Routers
+Route::get('md/api/load/products/{section}',[ApiAjaxController::class,'getProductsSection']);
 
