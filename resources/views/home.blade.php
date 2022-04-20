@@ -40,7 +40,7 @@
                 <div class="carousel-inner">
                     @foreach($sliders as $key => $sli)
                         <div class="carousel-item {{ $key == 1 ? 'active' : ''}}">
-                            <img src="{{ asset('storage/'.$sli->image) }}" class="d-block w-100" alt="" height="300px">
+                            <img src="{{ asset('storage/'.$sli->image) }}" class="d-block w-100" alt="" height="500px">
                         </div>
                     @endforeach
                 </div>

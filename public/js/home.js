@@ -1,6 +1,8 @@
 const base = window.location.href;
 const paginationDiv = document.getElementById('pagination');
 const auth = document.querySelector('meta[name="auth"]').getAttribute('content');
+const _csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+var products_list_ids_temp = [];
 
 window.onload = function() {
     load_products("home");
@@ -27,6 +29,7 @@ function showProducts(products) {
     let div = '';
 
     products.forEach(product => {
+        products_list_ids_temp.push(product.id);
         div +=
             `<div class='product p-2'>
             <img src='${base}/storage/t_${product.image}'>
@@ -43,6 +46,38 @@ function showProducts(products) {
     });
 
     divProduct.innerHTML = div;
+    if (auth == 1) {
+        mark_user_favorites(products_list_ids_temp);
+        products_list_ids_temp = [];
+    }
+
+}
+
+function mark_user_favorites(products) {
+
+    let url = base + 'md/api/load/user/favorites';
+    var params = [1, products];
+
+    fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': _csrf
+            },
+            method: 'POST',
+            body: JSON.stringify(params)
+
+        })
+        .then(response => response.json())
+        .then(function(data) {
+            if (data.count > 0) {
+                data.objects.forEach(fav => {
+                    document.getElementById(`favorite_1_${fav}`).classList.remove('btn-light');
+                    document.getElementById(`favorite_1_${fav}`).removeAttribute('onclick');
+                    document.getElementById(`favorite_1_${fav}`).classList.add('btn-danger')
+                })
+            }
+        })
+        .catch(error => console.log(error));
 }
 
 function pagination(links) {
@@ -77,13 +112,14 @@ function addFavorites(id, module) {
     fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                'X-CSRF-TOKEN': _csrf
             },
             method: 'POST'
         })
         .then(response => response.json())
         .then(function(data) {
             document.getElementById(`favorite_${module}_${id}`).classList.remove('btn-light');
+            document.getElementById(`favorite_${module}_${id}`).removeAttribute('onclick');
             document.getElementById(`favorite_${module}_${id}`).classList.add('btn-danger')
         })
         .catch(error => console.log(error));
