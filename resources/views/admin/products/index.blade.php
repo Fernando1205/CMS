@@ -98,6 +98,9 @@
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 @endif
+                                <a href="{{ route('products.inventory', $product) }}" class="btn btn-info">
+                                    <i class="fa-solid fa-box"></i>
+                                </a>
                                 @if ( keyValueJson(auth()->user()->permissions,'products.destroy') )
                                     @if (is_null($product->deleted_at))
                                         <form method="post" class="d-inline" id="formDeleteProduct">

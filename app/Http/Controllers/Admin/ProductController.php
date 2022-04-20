@@ -8,6 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductSearchRequest;
 use App\Http\Requests\ProductUpdRequest;
 use App\Models\Category;
+use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\ProductGallery;
 use App\Services\ImageService;
@@ -172,5 +173,12 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error','Ha ocurrido un error');
         }
+    }
+
+    public function inventory(Product $product): View
+    {
+        $inventory = Inventory::where('product_id',$product->id)->get();
+        // dd($inventory);
+        return view('admin.products.inventory',compact('product','inventory'));
     }
 }

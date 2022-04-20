@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(function() {
@@ -25,6 +26,10 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     Route::post('products/search', [ProductController::class, 'search'])->name('products.search');
     Route::post('products/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
     Route::post('products/{product}/gallery', [ProductController::class, 'gallery'])->name('products.gallery')->middleware('userPermissions');
+    Route::get('products/{product}/inventory', [ProductController::class, 'inventory'])->name('products.inventory');
+
+    // Invetario productos
+    Route::resource('inventory',InventoryController::class)->only('store');
 
     // Galeria productos
     Route::resource('gallery', ProductGalleryController::class)->only('destroy')->middleware('userPermissions');
