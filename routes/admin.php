@@ -29,7 +29,7 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     Route::get('products/{product}/inventory', [ProductController::class, 'inventory'])->name('products.inventory');
 
     // Invetario productos
-    Route::resource('inventory',InventoryController::class)->only('store');
+    Route::resource('inventory',InventoryController::class)->only('store','edit','update','destroy');
 
     // Galeria productos
     Route::resource('gallery', ProductGalleryController::class)->only('destroy')->middleware('userPermissions');

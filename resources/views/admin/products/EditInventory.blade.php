@@ -30,15 +30,16 @@
                     </div>
                 </div>
                 <div class="inside">
-                    <form action="{{ route('inventory.store') }}" method="POST">
+                    <form action="{{ route('inventory.update', $inventory) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre:</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-keyboard"></i>
                                 </div>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $inventory->name }}">
                                 @error('name')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -53,7 +54,7 @@
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-keyboard"></i>
                                 </div>
-                                <input type="number" class="form-control" id="stock" name="stock">
+                                <input type="number" class="form-control" id="stock" name="stock"  value="{{ $inventory->stock }}">
                                 @error('stock')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -68,7 +69,7 @@
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-keyboard"></i>
                                 </div>
-                                <input type="number" class="form-control" id="price" name="price">
+                                <input type="number" class="form-control" id="price" name="price"  value="{{ $inventory->price }}">
                                 @error('price')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -81,8 +82,8 @@
                             <label for="limit" class="form-label">Limite de inventario:</label>
                             <div class="input-group">
                                 <select name="limit" id="limit" class="form-select">
-                                    <option value="0">Limitado</option>
-                                    <option value="1">Ilimitado</option>
+                                    <option value="0" {{ $inventory->limit == 0 ? 'selected' : '' }}>Limitado</option>
+                                    <option value="1" {{ $inventory->limit == 1 ? 'selected' : '' }}>Ilimitado</option>
                                 </select>
                                 @error('limit')
                                     <div class="invalid-feedback d-block">
@@ -98,7 +99,7 @@
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-keyboard"></i>
                                 </div>
-                                <input type="number" class="form-control" id="min" name="min">
+                                <input type="number" class="form-control" id="min" name="min"  value="{{ $inventory->min }}">
                                 @error('min')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -107,14 +108,13 @@
                             </div>
                         </div>
 
-                        <input type="text" name="product_id" value="{{ $product->id }}" hidden>
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="submit" class="btn btn-success">Actualizar</button>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-9">
+        {{-- <div class="col-md-9">
             <div class="panel shadow">
                 <div class="header">
                     <h2><i class="fa-solid fa-box"></i> Inventario</h2>
@@ -164,7 +164,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
     </div>
 </div>
