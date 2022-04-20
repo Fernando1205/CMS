@@ -35,7 +35,7 @@ function showProducts(products) {
             <img src='${base}/storage/t_${product.image}'>
             <h5>${product.name}</h5>
             <p class="fs-5"><strong>$${product.price}</strong></p>
-            <a class="btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>`;
+            <a class="btn-sm btn-primary" href="/product/${product.id}"><i class="fa-solid fa-eye"></i></a>`;
         if (auth == 1) {
             div += `<a class="btn-sm btn-light" id="favorite_1_${product.id}" onclick="addFavorites(${product.id}, 1)"><i class="fa-solid fa-heart"></i></a>`;
         } else {

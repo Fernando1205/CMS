@@ -11,6 +11,10 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
         <script src="https://kit.fontawesome.com/80c9d698bb.js" crossorigin="anonymous"></script>
+       <!-- Add the slick-theme.css if you want default styling -->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <!-- Add the slick-theme.css if you want default styling -->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
         @stack('css')
 
     </head>
@@ -85,6 +89,8 @@
         <script src="{{ asset('js/app.js') }}"></script>
         {{-- JQUERY --}}
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        {{-- Slick carouse --}}
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script>
             @if ($errors->any())
             @foreach ($errors->all() as $error)
