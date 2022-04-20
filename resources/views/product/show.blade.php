@@ -22,7 +22,14 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        {{ $product->name }}
+                        <h2>{{ $product->name }}</h2>
+                        <div class="category">
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item"><a href=""><i class="fa-solid fa-house"></i> Inicio</a></li>
+                                <li class="list-group-item"><a href=""><i class="fa-solid fa-shop"></i> Tienda</a></li>
+                                <li class="list-group-item"><a href="">{!!  htmlspecialchars_decode($product->category->icono) !!} {{ $product->category->name}}</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,5 +45,11 @@ $(document).ready(function(){
     });
   });
 </script>
-
+@endpush
+@push('css')
+    <style>
+        a {
+            text-decoration: none!important;
+        }
+    </style>
 @endpush
