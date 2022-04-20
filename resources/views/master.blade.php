@@ -16,9 +16,47 @@
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
         @stack('css')
+        <style>
+            .loader-div {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                height: 100vh;
+                width: 100%;
+                position: absolute;
+                z-index: 1;
+                background-color: #fff;
+                overflow: hidden;
+            }
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid #3498db;
+                width: 120px;
+                height: 120px;
+                -webkit-animation: spin 2s linear infinite; /* Safari */
+                animation: spin 2s linear infinite;
+            }
+
+            /* Safari */
+            @-webkit-keyframes spin {
+              0% { -webkit-transform: rotate(0deg); }
+              100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+        </style>
 
     </head>
     <body>
+
+        <div class="loader-div" id="loader-div">
+            <div class="loader"></div>
+        </div>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
@@ -91,6 +129,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
         {{-- Slick carouse --}}
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
         <script>
             @if ($errors->any())
             @foreach ($errors->all() as $error)
@@ -102,6 +141,11 @@
             @elseif (session('error'))
                 toastr.error("{{ session('error') }}");
             @endif
+        </script>
+        <script>
+            $( document ).ready(function() {
+                $('.loader-div').css("display", "none");
+            });
         </script>
         @stack('script')
     </body>

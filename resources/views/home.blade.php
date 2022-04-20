@@ -8,7 +8,7 @@
             <div class="panel shadow mt-5 p-2">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="dropdown">
+                        <div class="dropdown mb-2">
                             <a class="btn btn-secondary dropdown-toggle d-block" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-bars-staggered"></i> Categorias
                             </a>
@@ -56,6 +56,7 @@
         </div>
 
         <section class="my-3">
+            <h2>Productos destacados</h2>
             <div id="products_list" class="producsts_list d-flex flex-wrap justify-content-center"></div>
             <div class="load mt-5">
                 <nav aria-label="Page navigation example">
