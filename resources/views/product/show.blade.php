@@ -30,6 +30,9 @@
                                 <li class="list-group-item"><a href="">{!!  htmlspecialchars_decode($product->category->icono) !!} {{ $product->category->name}}</a></li>
                             </ul>
                         </div>
+                        <div class="info">
+                            <h2>${{ $product->price }}</h2>
+                        </div>
                     </div>
                 </div>
             </div>

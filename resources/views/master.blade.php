@@ -71,7 +71,7 @@
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-house"></i> Inicio</a>
                         </li>
                         <li class="nav-item pe-3">
-                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-store"></i> Tienda</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('store.index') }}"><i class="fa-solid fa-store"></i> Tienda</a>
                         </li>
                         <li class="nav-item pe-3">
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-building"></i> Sobre nosotros</a>
