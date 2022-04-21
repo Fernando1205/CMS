@@ -80,7 +80,7 @@
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-address-book"></i> Contacto</a>
                         </li>
                         <li class="nav-item pe-3">
-                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-cart-shopping"></i> <span>0</span></a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('cart.index') }}"><i class="fa-solid fa-cart-shopping"></i> <span>0</span></a>
                         </li>
                         @guest
                             <li class="nav-item pe-3">

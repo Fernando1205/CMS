@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ApiAjaxController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -25,6 +26,9 @@ Route::get('/', [ ContentController::class,'index'])->name('home');
 
 // Store
 Route::resource('store',StoreController::class);
+
+// Cart
+Route::resource('/cart', CartController::class);
 
 // Auth
 Route::get('login', [ LoginController::class, 'showLogin'])->name('login');
