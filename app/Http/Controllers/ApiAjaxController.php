@@ -17,7 +17,9 @@ class ApiAjaxController extends Controller
             case 'home':
                 $products = Product::where('status',1)->inRandomOrder()->paginate(20);
                 break;
-
+            case 'store':
+                $products = Product::where('status',1)->orderBy('id','desc')->paginate(2);
+                break;
             default:
                 $products = Product::where('status',1)->inRandomOrder()->paginate(20);
                 break;

@@ -1,11 +1,11 @@
-const base = window.location.href;
+const base = 'http://mycms.test/'
 const paginationDiv = document.getElementById('pagination');
 const auth = document.querySelector('meta[name="auth"]').getAttribute('content');
 const _csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 var products_list_ids_temp = [];
 
 window.onload = function() {
-    load_products("home");
+    load_products("store");
 }
 
 function load_products(section) {
