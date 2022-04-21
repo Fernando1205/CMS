@@ -273,26 +273,3 @@
     </div>
 </div>
 @endsection
-@push('script')
-    <script>
-        CKEDITOR.replace( 'content', {
-            toolbar: [
-                { name:'clipborad',items:['Cut','Paste','PasteText','-','Undo','Redo'] },
-                { name:'basicstyles', items:['Bold','Italic','BulletedList','Strike','Imagen','Link','Unlike','Blockquote']},
-                { name:'document', items: ['CodeSnippet','EmojiPanel','Preview','Source']}
-            ]
-        } );
-    </script>
-    <script>
-        let btn = document.querySelector('#btn_product_file_image');
-        let fileImage = document.querySelector('#product_image');
-
-        btn.addEventListener('click', () => {
-            fileImage.click();
-        })
-
-        fileImage.addEventListener('change', () => {
-            document.querySelector('#formGallery').submit();
-        })
-    </script>
-@endpush

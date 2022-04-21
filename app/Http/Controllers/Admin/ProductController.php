@@ -178,7 +178,6 @@ class ProductController extends Controller
     public function inventory(Product $product): View
     {
         $inventory = Inventory::where('product_id',$product->id)->get();
-        // dd($inventory);
         return view('admin.products.inventory',compact('product','inventory'));
     }
 }

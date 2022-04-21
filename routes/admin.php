@@ -31,6 +31,10 @@ Route::prefix('admin')->middleware('auth','IsAdmin','userStatus')->group(functio
     // Invetario productos
     Route::resource('inventory',InventoryController::class)->only('store','edit','update','destroy');
 
+    // Variantes inventory
+    Route::post('inventory/{inventory}/variant', [ InventoryController::class, 'productInvVariant'])->name('variant');
+    Route::delete('inventory/{variant}/variant/', [ InventoryController::class, 'invVarDestroy'])->name('variant.destroy');
+
     // Galeria productos
     Route::resource('gallery', ProductGalleryController::class)->only('destroy')->middleware('userPermissions');
 

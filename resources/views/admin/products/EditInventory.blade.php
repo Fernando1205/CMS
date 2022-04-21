@@ -26,7 +26,7 @@
             <div class="panel shadow">
                 <div class="header">
                     <div class="title">
-                        <h2><i class="fa-solid fa-box"></i> Crear inventario</h2>
+                        <h2><i class="fa-solid fa-box"></i> Editar inventario</h2>
                     </div>
                 </div>
                 <div class="inside">
@@ -114,48 +114,54 @@
             </div>
         </div>
 
-        {{-- <div class="col-md-9">
+        <div class="col-md-9">
             <div class="panel shadow">
                 <div class="header">
-                    <h2><i class="fa-solid fa-box"></i> Inventario</h2>
+                    <h2><i class="fa-solid fa-box"></i> Variantes</h2>
                 </div>
                 <div class="inside">
+                    <hr>
+                    <form action="{{ route('variant', $inventory) }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Ingresa nombre de la variante">
+                                        @error('name')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="submit" value="Guardar" class="btn btn-success">
+                            </div>
+                        </div>
+                    </form>
                     <table class="table">
                         <thead>
                             <tr>
                                 <td></td>
                                 <td>Nombre</td>
-                                <td>Existencias</td>
-                                <td>Minimo</td>
-                                <td>Precio</td>
                                 <td></td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($inventory as $item)
+                            @foreach ($inventory->variants as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
-                                    @if ($item->stock == 0)
-                                        <td>Limitado</td>
-                                    @else
-                                        <td>Ilimitado</td>
-                                    @endif
-                                    <td>{{ $item->min }}</td>
-                                    <td>{{ $item->price }}</td>
                                     <td>
-                                        <a href="{{ route('inventory.edit', $item) }}" class="btn btn-primary">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-
-                                        <form action="{{ route('inventory.destroy', $item) }}" method="post" class="d-inline">
+                                        <form action="{{ route('variant.destroy', $item) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn-sm btn-danger d-block w-100">
                                                 <i class="fa-solid fa-trash"></i>
-                                            </a>
+                                            </button>
                                         </form>
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -164,7 +170,7 @@
                 </div>
             </div>
 
-        </div> --}}
+        </div>
 
     </div>
 </div>

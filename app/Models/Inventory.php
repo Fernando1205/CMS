@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventory extends Model
@@ -18,4 +19,9 @@ class Inventory extends Model
         'limit',
         'min',
     ];
+
+    public function variants(): HasMany
+    {
+        return $this->hasMany(Variant::class);
+    }
 }
